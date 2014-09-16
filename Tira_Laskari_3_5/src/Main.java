@@ -21,14 +21,16 @@ public class Main {
 	}
 
 	public static void main(String[] args) {
-		long alku = System.currentTimeMillis();
-		System.out.println(fibo(40));
-		long loppu = System.currentTimeMillis();
-		System.out.println("Aikaa kesti: " + (loppu - alku) + " ms");
+		long alku;
+		long loppu;
+		alku = System.nanoTime();
+		System.out.println(nFibo(92));
+		loppu = System.nanoTime();
+		System.out.println(" Aikaa kesti nFibon 92 luvulla: " + ((loppu - alku)/1000000.0) + " ms");
 		alku = System.currentTimeMillis();
-		System.out.println(nFibo(4000));
+		System.out.println(fibo(40));
 		loppu = System.currentTimeMillis();
-		System.out.println("Aikaa kesti: " + (loppu - alku) + " ms");
+		System.out.println(" Aikaa kesti fibon 40 luvulla: " + (loppu - alku) + " ms");
 	}
 	
 }
