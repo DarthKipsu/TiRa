@@ -16,12 +16,9 @@ public class Main {
 			vaihtoehdot.add(vaihtoehto);
 			return;
 		}
-		if (x >= 6) lisaa(6, i, vaihtoehto, x);
-		if (x >= 5) lisaa(5, i, vaihtoehto, x);
-		if (x >= 4) lisaa(4, i, vaihtoehto, x);
-		if (x >= 3) lisaa(3, i, vaihtoehto, x);
-		if (x >= 2) lisaa(2, i, vaihtoehto, x);
-		if (x >= 1) lisaa(1, i, vaihtoehto, x);
+		for (int k=1; k<=6; k++) {
+			if (x >= k) lisaa(k, i, vaihtoehto, x);
+		}
 	}
 
 	private static void lisaa(int silmaluku, int i, int[] vaihtoehto, int x) {
