@@ -21,15 +21,8 @@ public class Main {
         if (y == 0 && x == sivunPituus - 1) {
             if (mato == sivunPituus * sivunPituus) {
                 vaihtoehdot++;
-//				for (int i=0; i<sivunPituus; i++) {
-//					for (int j=0; j<sivunPituus; j++) {
-//						System.out.print("" + i + j + " " + kentta[i][j] + " ");
-//					}
-//					System.out.println();
-//				}
-//				System.out.println();
             }
-        } else {
+        } else if (ylanurkatOK(x, y)) {
             if (alas(x, y)) reittienMaara(x + 1, y, mato + 1);
             if (ylos(x,y)) reittienMaara(x - 1, y, mato + 1);
 			if (oikealle(x, y)) reittienMaara(x, y + 1, mato + 1);
@@ -37,6 +30,19 @@ public class Main {
         }
 		kentta[x][y] = false;
     }
+	
+	private static boolean ylanurkatOK(int x, int y) {
+		if (sivunPituus > 4) return true;
+		if (x > 2 && y < sivunPituus - 3 && kentta[x - 1][y + 1] &&
+				kentta[x - 1][y] == false && kentta[x][y + 1] == false) return false;
+		if (x > 2 && y > 2 && kentta[x - 1][y - 1] &&
+				kentta[x - 1][y] == false && kentta[x][y - 1] == false) return false;
+		if (x < sivunPituus - 3 && y > 2 && kentta[x + 1][y - 1] &&
+				kentta[x + 1][y] == false && kentta[x][y - 1] == false) return false;
+		if (x < sivunPituus - 3 && y < sivunPituus - 3 && kentta[x + 1][y + 1] &&
+				kentta[x + 1][y] == false && kentta[x][y + 1] == false) return false;
+		return true;
+	}
 	
 	private static boolean alas(int x, int y) {
 		if (x > 0 && (y == 0 || y == sivunPituus - 1 || kentta[x][y-1] && kentta[x][y+1])
@@ -71,14 +77,19 @@ public class Main {
 	}
 
 	public static void main(String[] args) {
-		Scanner lukija = new Scanner(System.in);
-		System.out.print("Anna puiston sivun pituus: ");
-		int sivu = Integer.parseInt(lukija.nextLine());
 		
-		long reitit = reittienMaara(sivu);
-		System.out.println("Mahdollisia reitteja:" + reitit);
+		if (args.length != 0) {
+			int sivu = Integer.parseInt(args[0]);
+			System.out.println("Mahdollisia reitteja:" + reittienMaara(sivu));
+		} else {
+			Scanner lukija = new Scanner(System.in);
+			System.out.print("Anna puiston sivun pituus: ");
+			int sivu = Integer.parseInt(lukija.nextLine());
 		
-//		System.out.println("Mahdollisia reitteja:" + reittienMaara(4));
+			long reitit = reittienMaara(sivu);
+			System.out.println("Mahdollisia reitteja:" + reitit);
+		}
+		
 	}
 	
 }
