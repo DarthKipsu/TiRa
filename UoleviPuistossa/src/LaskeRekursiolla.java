@@ -1,8 +1,6 @@
 
-import java.util.Scanner;
-
-public class Main {
-
+public class LaskeRekursiolla {
+	
     private static long vaihtoehdot;
     private static boolean[][] kentta;
 	private static int sivunPituus;
@@ -16,7 +14,7 @@ public class Main {
     }
 
     public static void reittienMaara(int x, int y, int mato) {
-        if (kentta[x][y] == true) return;
+        if (kentta[x][y]) return;
 		kentta[x][y] = true;
         if (y == 0 && x == sivunPituus - 1) {
             if (mato == sivunPituus * sivunPituus) {
@@ -75,22 +73,4 @@ public class Main {
 		}
 		return y > 0;
 	}
-
-	public static void main(String[] args) {
-		
-		if (args.length != 0) {
-			int sivu = Integer.parseInt(args[0]);
-			System.out.println("Mahdollisia reitteja:" + reittienMaara(sivu));
-		} else {
-			Scanner lukija = new Scanner(System.in);
-			System.out.print("Anna puiston sivun pituus: ");
-			int sivu = Integer.parseInt(lukija.nextLine());
-		
-			long reitit = reittienMaara(sivu);
-			System.out.println("Mahdollisia reitteja:" + reitit);
-		}
-		
-	}
-	
 }
-
