@@ -1,4 +1,5 @@
 
+import java.util.ArrayList;
 import java.util.concurrent.ConcurrentLinkedDeque;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -42,9 +43,9 @@ public class LaskePinolla implements Runnable {
 	private long reittienMaara() {
 		
 		long reitit = 0;
-		Siirto siirto;
+		Siirto siirto = null;
 		
-		while ((siirto = siirrot.poll()) != null) {
+		while ((siirto = siirto != null ? siirto : siirrot.poll()) != null) {
 			boolean[] kentta = siirto.kentta();
 			int x = siirto.koordinaatit()[0];
 			int y = siirto.koordinaatit()[1];
@@ -55,11 +56,20 @@ public class LaskePinolla implements Runnable {
 				if (mato == sivunPituus * sivunPituus) {
 					reitit++;
 				}
+				siirto = null;
 			} else if (kannattaaJatkaa(x, y, kentta)) {
-				if (vasen(x, y, kentta)) siirrot.add(new Siirto(kentta, x, y - 1, mato + 1));
-				if (oikea(x, y, kentta)) siirrot.add(new Siirto(kentta, x, y + 1, mato + 1));
-				if (ylos(x, y, kentta)) siirrot.add(new Siirto(kentta, x - 1, y, mato + 1));
-				if (alas(x, y, kentta)) siirrot.add(new Siirto(kentta, x + 1, y, mato + 1));
+				ArrayList<Siirto> mahdollisetSiirrot = new ArrayList<>();
+				if (vasen(x, y, kentta)) mahdollisetSiirrot.add(new Siirto(kentta, x, y - 1, mato + 1));
+				if (oikea(x, y, kentta)) mahdollisetSiirrot.add(new Siirto(kentta, x, y + 1, mato + 1));
+				if (ylos(x, y, kentta)) mahdollisetSiirrot.add(new Siirto(kentta, x - 1, y, mato + 1));
+				if (alas(x, y, kentta)) mahdollisetSiirrot.add(new Siirto(kentta, x + 1, y, mato + 1));
+				if (!mahdollisetSiirrot.isEmpty()) {
+					siirto = mahdollisetSiirrot.get(0);
+					mahdollisetSiirrot.remove(0);
+					siirrot.addAll(mahdollisetSiirrot);
+				} else {
+					siirto = null;
+				}
 			}
 		}
 		return reitit;
