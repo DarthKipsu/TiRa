@@ -30,7 +30,7 @@ public class LaskeRekursiolla {
     }
 	
 	private static boolean ylanurkatOK(int x, int y) {
-		if (sivunPituus > 4) return true;
+		if (sivunPituus < 4) return true;
 		if (x > 2 && y < sivunPituus - 3 && kentta[x - 1][y + 1] &&
 				kentta[x - 1][y] == false && kentta[x][y + 1] == false) return false;
 		if (x > 2 && y > 2 && kentta[x - 1][y - 1] &&

@@ -76,7 +76,7 @@ public class LaskePinolla implements Runnable {
 	}
 
 	private boolean kannattaaJatkaa(int x , int y, boolean[] kentta) {
-		if (sivunPituus > 4) return true;
+		if (sivunPituus < 4) return true;
 		if (x > 2 && y < sivunPituus - 3 && kentta[x - 1 + (y + 1) * sivunPituus] &&
 				kentta[x - 1 + y * sivunPituus] == false && kentta[x + (y + 1) * sivunPituus] == false) return false;
 		if (x > 2 && y > 2 && kentta[x - 1 + (y - 1) * sivunPituus] &&
