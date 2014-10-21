@@ -35,14 +35,14 @@ public class LaskePinollaTest {
 	public void tearDown() {
 	}
 
-//	@Test
-//	public void testaaN1() {
+	@Test
+	public void testaaN1() {
 //		long reittienMaara = LaskePinolla.reittienMaara(1);
 //		System.out.println(reittienMaara);
 //		long tulos = 1;
 //		
 //		assertEquals(tulos, reittienMaara);
-//	}
+	}
 //	
 //	@Test
 //	public void testaaN2() {
@@ -53,25 +53,25 @@ public class LaskePinollaTest {
 //		assertEquals(tulos, reittienMaara);
 //	}
 	
-	@Test
-	public void testaaN3() {
-		LaskePinolla pino = new LaskePinolla();
-		long reittienMaara = pino.reittienMaara(3, 2);
-		System.out.println(reittienMaara);
-		long tulos = 2;
-		
-		assertEquals(tulos, reittienMaara);
-	}
-	
-	@Test
-	public void testaaN4() {
-		LaskePinolla pino = new LaskePinolla();
-		long reittienMaara = pino.reittienMaara(4, 2);
-		System.out.println(reittienMaara);
-		long tulos = 8;
-		
-		assertEquals(tulos, reittienMaara);
-	}
+//	@Test
+//	public void testaaN3() {
+//		LaskePinolla pino = new LaskePinolla();
+//		long reittienMaara = pino.reittienMaara(3, 2);
+//		System.out.println(reittienMaara);
+//		long tulos = 2;
+//		
+//		assertEquals(tulos, reittienMaara);
+//	}
+//	
+//	@Test
+//	public void testaaN4() {
+//		LaskePinolla pino = new LaskePinolla();
+//		long reittienMaara = pino.reittienMaara(4, 2);
+//		System.out.println(reittienMaara);
+//		long tulos = 8;
+//		
+//		assertEquals(tulos, reittienMaara);
+//	}
 	
 //	@Test
 //	public void testaaN5() {

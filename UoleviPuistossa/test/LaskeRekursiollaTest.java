@@ -29,56 +29,56 @@ public class LaskeRekursiollaTest {
 
 	@Test
 	public void testaaN1() {
-//		long reittienMaara = LaskeRekursiolla.reittienMaara(1);
-//		System.out.println(reittienMaara);
-//		long tulos = 1;
-//		
-//		assertEquals(tulos, reittienMaara);
+		long reittienMaara = LaskeRekursiolla.reittienMaara(1);
+		System.out.println(reittienMaara);
+		long tulos = 1;
+		
+		assertEquals(tulos, reittienMaara);
 	}
 	
-//	@Test
-//	public void testaaN2() {
-//		long reittienMaara = LaskeRekursiolla.reittienMaara(2);
-//		System.out.println(reittienMaara);
-//		long tulos = 1;
-//		
-//		assertEquals(tulos, reittienMaara);
-//	}
-//	
-//	@Test
-//	public void testaaN3() {
-//		long reittienMaara = LaskeRekursiolla.reittienMaara(3);
-//		System.out.println(reittienMaara);
-//		long tulos = 2;
-//		
-//		assertEquals(tulos, reittienMaara);
-//	}
-//	
-//	@Test
-//	public void testaaN4() {
-//		long reittienMaara = LaskeRekursiolla.reittienMaara(4);
-//		System.out.println(reittienMaara);
-//		long tulos = 8;
-//		
-//		assertEquals(tulos, reittienMaara);
-//	}
-//	
-//	@Test
-//	public void testaaN5() {
-//		long reittienMaara = LaskeRekursiolla.reittienMaara(5);
-//		System.out.println(reittienMaara);
-//		long tulos = 86;
-//		
-//		assertEquals(tulos, reittienMaara);
-//	}
-//	
-//	@Test
-//	public void testaaN6() {
-//		long reittienMaara = LaskeRekursiolla.reittienMaara(6);
-//		System.out.println(reittienMaara);
-//		long tulos = 1770;
-//		
-//		assertEquals(tulos, reittienMaara);
-//	}
+	@Test
+	public void testaaN2() {
+		long reittienMaara = LaskeRekursiolla.reittienMaara(2);
+		System.out.println(reittienMaara);
+		long tulos = 1;
+		
+		assertEquals(tulos, reittienMaara);
+	}
+	
+	@Test
+	public void testaaN3() {
+		long reittienMaara = LaskeRekursiolla.reittienMaara(3);
+		System.out.println(reittienMaara);
+		long tulos = 2;
+		
+		assertEquals(tulos, reittienMaara);
+	}
+	
+	@Test
+	public void testaaN4() {
+		long reittienMaara = LaskeRekursiolla.reittienMaara(4);
+		System.out.println(reittienMaara);
+		long tulos = 8;
+		
+		assertEquals(tulos, reittienMaara);
+	}
+	
+	@Test
+	public void testaaN5() {
+		long reittienMaara = LaskeRekursiolla.reittienMaara(5);
+		System.out.println(reittienMaara);
+		long tulos = 86;
+		
+		assertEquals(tulos, reittienMaara);
+	}
+	
+	@Test
+	public void testaaN6() {
+		long reittienMaara = LaskeRekursiolla.reittienMaara(6);
+		System.out.println(reittienMaara);
+		long tulos = 1770;
+		
+		assertEquals(tulos, reittienMaara);
+	}
 	
 }

@@ -14,7 +14,6 @@ public class LaskeRekursiolla {
     }
 
     public static void reittienMaara(int x, int y, int mato) {
-        if (kentta[x][y]) return;
 		kentta[x][y] = true;
         if (y == 0 && x == sivunPituus - 1) {
             if (mato == sivunPituus * sivunPituus) {
@@ -43,6 +42,7 @@ public class LaskeRekursiolla {
 	}
 	
 	private static boolean alas(int x, int y) {
+		if (x < sivunPituus - 1 && kentta[x + 1][y]) return false;
 		if (x > 0 && (y == 0 || y == sivunPituus - 1 || kentta[x][y-1] && kentta[x][y+1])
 				&& kentta[x - 1][y] == false) {
 			return false;
@@ -51,6 +51,7 @@ public class LaskeRekursiolla {
 	}
 
 	private static boolean ylos(int x, int y) {
+		if (x > 0 && kentta[x - 1][y]) return false;
 		if (y == 0 || y == sivunPituus - 1 || (kentta[x][y-1] && kentta[x][y+1]
 				&& kentta[x + 1][y] == false)) {
 			return false;
@@ -59,6 +60,7 @@ public class LaskeRekursiolla {
 	}
 
 	private static boolean oikealle(int x, int y) {
+		if (y < sivunPituus - 1 && kentta[x][y + 1]) return false;
 		if (x == sivunPituus - 1 || (y > 0 && (x == 0 || kentta[x-1][y] && kentta[x+1][y])
 				&& kentta[x][y - 1] == false)) {
 			return false;
@@ -67,6 +69,7 @@ public class LaskeRekursiolla {
 	}
 
 	private static boolean vasemmalle(int x, int y) {
+		if (y > 0 && kentta[x][y - 1]) return false;
 		if (x==0 || y < sivunPituus - 1 && (x == sivunPituus - 1 ||
 				kentta[x-1][y] && kentta[x+1][y]) && kentta[x][y + 1] == false) {
 			return false;
