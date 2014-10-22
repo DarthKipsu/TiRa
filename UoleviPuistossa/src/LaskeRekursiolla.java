@@ -7,15 +7,24 @@ public class LaskeRekursiolla {
 
     public static long reittienMaara(int sivu) {
         vaihtoehdot = 0;
-        kentta = new boolean[sivu][sivu];
+        kentta = new boolean[sivu + 2][sivu + 2];
+		for (int i=0; i<sivu + 2; i++) {
+			if (i == 0 || i == sivu + 1) {
+				for (int j=1; j< sivu + 1; j++) kentta[i][j] = true;
+			}
+			kentta[i][0] = true;
+			kentta[i][sivu + 1] = true;
+		}
 		sivunPituus = sivu;
-        reittienMaara(0, 0, 1);
+//		tulosta(kentta);
+        reittienMaara(1, 1, 1);
         return vaihtoehdot;
     }
 
     public static void reittienMaara(int x, int y, int mato) {
 		kentta[x][y] = true;
-        if (y == 0 && x == sivunPituus - 1) {
+        if (y == 1 && x == sivunPituus) {
+//			tulosta(kentta);
             if (mato == sivunPituus * sivunPituus) {
                 vaihtoehdot++;
             }
@@ -29,51 +38,44 @@ public class LaskeRekursiolla {
     }
 	
 	private static boolean ylanurkatOK(int x, int y) {
-		if (sivunPituus < 4) return true;
-		if (x > 2 && y < sivunPituus - 3 && kentta[x - 1][y + 1] &&
-				kentta[x - 1][y] == false && kentta[x][y + 1] == false) return false;
-		if (x > 2 && y > 2 && kentta[x - 1][y - 1] &&
-				kentta[x - 1][y] == false && kentta[x][y - 1] == false) return false;
-		if (x < sivunPituus - 3 && y > 2 && kentta[x + 1][y - 1] &&
-				kentta[x + 1][y] == false && kentta[x][y - 1] == false) return false;
-		if (x < sivunPituus - 3 && y < sivunPituus - 3 && kentta[x + 1][y + 1] &&
-				kentta[x + 1][y] == false && kentta[x][y + 1] == false) return false;
+		if (kentta[x - 1][y + 1] && kentta[x - 1][y] == false 
+				&& kentta[x][y + 1] == false) return false;
+		if (kentta[x - 1][y - 1] && kentta[x - 1][y] == false 
+				&& kentta[x][y - 1] == false) return false;
+		if (kentta[x + 1][y - 1] && kentta[x + 1][y] == false && 
+				kentta[x][y - 1] == false) return false;
+		if (kentta[x + 1][y + 1] && kentta[x + 1][y] == false && 
+				kentta[x][y + 1] == false) return false;
 		return true;
 	}
 	
 	private static boolean alas(int x, int y) {
-		if (x < sivunPituus - 1 && kentta[x + 1][y]) return false;
-		if (x > 0 && (y == 0 || y == sivunPituus - 1 || kentta[x][y-1] && kentta[x][y+1])
-				&& kentta[x - 1][y] == false) {
-			return false;
-		}
-		return x < sivunPituus - 1;
+		if (kentta[x + 1][y]) return false;
+		return !(kentta[x][y-1] && kentta[x][y+1] && kentta[x - 1][y] == false);
 	}
 
 	private static boolean ylos(int x, int y) {
-		if (x > 0 && kentta[x - 1][y]) return false;
-		if (y == 0 || y == sivunPituus - 1 || (kentta[x][y-1] && kentta[x][y+1]
-				&& kentta[x + 1][y] == false)) {
-			return false;
-		}
-		return x > 0;
+		if (kentta[x - 1][y]) return false;
+		return !(kentta[x][y-1] && kentta[x][y+1] && kentta[x + 1][y] == false);
 	}
 
 	private static boolean oikealle(int x, int y) {
-		if (y < sivunPituus - 1 && kentta[x][y + 1]) return false;
-		if (x == sivunPituus - 1 || (y > 0 && (x == 0 || kentta[x-1][y] && kentta[x+1][y])
-				&& kentta[x][y - 1] == false)) {
-			return false;
-		}
-		return y < sivunPituus - 1;
+		if (kentta[x][y + 1]) return false;
+		return !(kentta[x-1][y] && kentta[x+1][y] && kentta[x][y - 1] == false);
 	}
 
 	private static boolean vasemmalle(int x, int y) {
-		if (y > 0 && kentta[x][y - 1]) return false;
-		if (x==0 || y < sivunPituus - 1 && (x == sivunPituus - 1 ||
-				kentta[x-1][y] && kentta[x+1][y]) && kentta[x][y + 1] == false) {
-			return false;
+		if (kentta[x][y - 1]) return false;
+		return !(kentta[x-1][y] && kentta[x+1][y] && kentta[x][y + 1] == false);
+	}
+	
+	private static void tulosta(boolean[][] taulukko) {
+		for (int i=0; i<sivunPituus + 2; i++) {
+			for (int j=0; j<sivunPituus + 2; j++) {
+				System.out.print(i + "" + j + ":" + taulukko[i][j] + " ");
+			}
+			System.out.println();
 		}
-		return y > 0;
+		System.out.println();
 	}
 }
