@@ -29,7 +29,7 @@ public class LaskeRekursiollaTest {
 
 	@Test
 	public void testaaN1() {
-		long reittienMaara = LaskeRekursiolla.reittienMaara(1);
+		long reittienMaara = Puisto.reittienMaara(1);
 		System.out.println(reittienMaara);
 		long tulos = 1;
 		
@@ -38,7 +38,7 @@ public class LaskeRekursiollaTest {
 	
 	@Test
 	public void testaaN2() {
-		long reittienMaara = LaskeRekursiolla.reittienMaara(2);
+		long reittienMaara = Puisto.reittienMaara(2);
 		System.out.println(reittienMaara);
 		long tulos = 1;
 		
@@ -47,7 +47,7 @@ public class LaskeRekursiollaTest {
 	
 	@Test
 	public void testaaN3() {
-		long reittienMaara = LaskeRekursiolla.reittienMaara(3);
+		long reittienMaara = Puisto.reittienMaara(3);
 		System.out.println(reittienMaara);
 		long tulos = 2;
 		
@@ -56,7 +56,7 @@ public class LaskeRekursiollaTest {
 	
 	@Test
 	public void testaaN4() {
-		long reittienMaara = LaskeRekursiolla.reittienMaara(4);
+		long reittienMaara = Puisto.reittienMaara(4);
 		System.out.println(reittienMaara);
 		long tulos = 8;
 		
@@ -65,7 +65,7 @@ public class LaskeRekursiollaTest {
 	
 	@Test
 	public void testaaN5() {
-		long reittienMaara = LaskeRekursiolla.reittienMaara(5);
+		long reittienMaara = Puisto.reittienMaara(5);
 		System.out.println(reittienMaara);
 		long tulos = 86;
 		
@@ -74,7 +74,7 @@ public class LaskeRekursiollaTest {
 	
 	@Test
 	public void testaaN6() {
-		long reittienMaara = LaskeRekursiolla.reittienMaara(6);
+		long reittienMaara = Puisto.reittienMaara(6);
 		System.out.println(reittienMaara);
 		long tulos = 1770;
 		

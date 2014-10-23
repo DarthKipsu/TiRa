@@ -5,15 +5,16 @@ public class UoleviPuistossa {
 
 	public static void main(String[] args) {
 		
+		Puisto laskuri = new Puisto();
 		if (args.length != 0) {
 			int sivu = Integer.parseInt(args[0]);
-			System.out.println("Mahdollisia reitteja:" + LaskeRekursiolla.reittienMaara(sivu));
+			System.out.println("Mahdollisia reitteja:" + laskuri.reittienMaara(sivu));
 		} else {
 			Scanner lukija = new Scanner(System.in);
 			System.out.print("Anna puiston sivun pituus: ");
 			int sivu = Integer.parseInt(lukija.nextLine());
 		
-			long reitit = LaskeRekursiolla.reittienMaara(sivu);
+			long reitit = laskuri.reittienMaara(sivu);
 			System.out.println("Mahdollisia reitteja:" + reitit);
 		}
 		
