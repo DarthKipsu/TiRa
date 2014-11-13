@@ -2,8 +2,18 @@
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.PriorityQueue;
+import java.util.Random;
 
 public class HeapSort {
+	
+	private static int[] createRandomArray(int size) {
+		int[] newRandom = new int[size];
+		Random random = new Random();
+		for (int i = 0; i < size; i++) {
+			newRandom[i] = random.nextInt(1000000) + 1;
+		}
+		return newRandom;
+	}
 
 	private static int[] sortWithExistingHeap(int[] array) {
 		PriorityQueue<Integer> heap = createMaxHeap(array);
@@ -32,9 +42,9 @@ public class HeapSort {
 	}
 
 	public static void main(String[] args) {
-		int[] unsorted = new int[]{2,8,5,6,1,3,7,4,2,8,5,6,1,3,7,4,2,8,5,6,1,3,7,4,2,8,5,6,1,3,7,4};
-		int[] unsorted2 = new int[]{2,8,5,6,1,3,7,4,2,8,5,6,1,3,7,4,2,8,5,6,1,3,7,4,2,8,5,6,1,3,7,4};
-		int[] unsorted3 = new int[]{2,8,5,6,1,3,7,4,2,8,5,6,1,3,7,4,2,8,5,6,1,3,7,4,2,8,5,6,1,3,7,4};
+		int[] unsorted = createRandomArray(1000000);
+		int[] unsorted2 = Arrays.copyOf(unsorted, 1000000);
+		int[] unsorted3 = Arrays.copyOf(unsorted, 1000000);
 		
 		Long begin = System.nanoTime();
 		int[] sorted = sortWithExistingHeap(unsorted);
@@ -44,11 +54,11 @@ public class HeapSort {
 		Arrays.sort(unsorted3);
 		Long sort = System.nanoTime();
 		
-		System.out.println(Arrays.toString(sorted));
+//		System.out.println(Arrays.toString(sorted));
 		System.out.println("Aikaa kului: " + (middle-begin)/1000000.0);
-		System.out.println(Arrays.toString(sorted2));
+//		System.out.println(Arrays.toString(sorted2));
 		System.out.println("Aikaa kului: " + (end-middle)/1000000.0);
-		System.out.println(Arrays.toString(unsorted3));
+//		System.out.println(Arrays.toString(unsorted3));
 		System.out.println("Aikaa kului: " + (sort-end)/1000000.0);
 	}
 
