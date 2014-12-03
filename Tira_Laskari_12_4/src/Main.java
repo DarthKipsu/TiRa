@@ -2,17 +2,21 @@
 public class Main {
 
 	public static void main(String[] args) {
-		int[][] verkko = RandomVerkonLuoja.luoVerkko(10000, 500);
-		int[][] verkko2 = RandomVerkonLuoja.luoVerkko(10000, 500);
-//		tulostaVerkko(verkko);
+		int[][] verkko = RandomVerkonLuoja.luoVerkko(10, 5);
+		int[][] verkko2 = RandomVerkonLuoja.luoVerkko(10, 5);
+		tulostaVerkko(verkko);
+		System.out.println("");
+		tulostaVerkko(verkko2);
 		long alku = System.nanoTime();
 		long pieninVirittava = new Prim(verkko).pieninVirittava();
 		long keski = System.nanoTime();
-		long pieninVirittava2 = new Kruskal(verkko).pieninVirittava();
+		long pieninVirittava2 = new Kruskal(verkko2).pieninVirittava();
 		long loppu = System.nanoTime();
 		System.out.println("Prim: " + pieninVirittava + ", " + (keski - alku)/1000000.0 + "ms");
 		System.out.println("Kruskal: " + pieninVirittava2 + ", " + (loppu - keski)/1000000.0 + "ms");
-//		tulostaVerkko(verkko);;
+		tulostaVerkko(verkko);
+		System.out.println("");
+		tulostaVerkko(verkko2);
 	}
 
 	private static void tulostaVerkko(int[][] verkko) {

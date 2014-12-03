@@ -1,5 +1,4 @@
 
-import java.util.ArrayDeque;
 import java.util.PriorityQueue;
 
 
@@ -31,38 +30,25 @@ public class Kruskal {
 	}
 	
 	public long pieninVirittava() {
-		while (!pino.isEmpty()) {
+		while(!pino.isEmpty()) {
 			Solmu solmu = pino.poll();
 			int mista = solmu.getMista();
 			int minne = solmu.getMinne();
-			if (eiKuuluOmaanMetsaan(mista, minne)) {
+			if (jommassaKummassaEiOleKayty(mista, minne)) {
 				lisaaKaari(solmu, mista, minne);
 			}
 		}
 		return paino;
 	}
 
-	private boolean eiKuuluOmaanMetsaan(int mista, int minne) {
-		return kayMetsaLapi(mista, mista, minne);
-	}
-	
-	private boolean kayMetsaLapi(int mista, int mista2, int mika) {
-		boolean eiKuulu = true;
-		for (int i = 1; i < verkko[mista].length; i++) {
-			if (i != mista2 && verkko[mista][i] != 0) {
-				if (i == mika) return false;
-				if (eiKuulu) eiKuulu = kayMetsaLapi(i, mista, mika);
-			}
-		}
-		return eiKuulu;
+	private boolean jommassaKummassaEiOleKayty(int mista, int minne) {
+		return !kaydyt[mista] || !kaydyt[minne];
 	}
 
 	private void lisaaKaari(Solmu solmu, int mista, int minne) {
 		int paino = solmu.getPaino();
 		verkko[mista][minne] = paino;
 		verkko[minne][mista] = paino;
-		kaydyt[mista] = true;
-		kaydyt[minne] = true;
 		this.paino += paino;
 	}
 }

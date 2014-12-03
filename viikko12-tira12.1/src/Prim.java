@@ -31,17 +31,17 @@ public class Prim {
 			Solmu solmu = keko.poll();
 			int mista = solmu.getMista();
 			int minne = solmu.getMinne();
-			if (taallaOnJoKayty(mista, minne)) {
+			if (taallaOnJoKayty(minne)) {
 				PoistaKaari(mista, minne);
 			} else {
-				sailytaKaariJaLisaaKohdesolmunKaaret(minne, mista, solmu);
+				sailytaKaariJaLisaaKohdesolmunKaaret(minne, solmu);
 			}
 		}
 		return paino;
 	}
 
-	private boolean taallaOnJoKayty(int mista, int minne) {
-		return kaydyt[minne] && kaydyt[mista];
+	private boolean taallaOnJoKayty(int minne) {
+		return kaydyt[minne];
 	}
 
 	private void PoistaKaari(int mista, int minne) {
@@ -49,14 +49,13 @@ public class Prim {
 		verkko[minne][mista] = 0;
 	}
 
-	private void sailytaKaariJaLisaaKohdesolmunKaaret(int minne, int mista, Solmu solmu) {
-		merkkaaKaari(minne, mista, solmu);
+	private void sailytaKaariJaLisaaKohdesolmunKaaret(int minne, Solmu solmu) {
+		merkkaaKaari(minne, solmu);
 		lisaaKohteenKaaret(minne);
 	}
 
-	private void merkkaaKaari(int minne, int mista, Solmu solmu) {
+	private void merkkaaKaari(int minne, Solmu solmu) {
 		kaydyt[minne] = true;
-		kaydyt[mista] = true;
 		paino += solmu.getPaino();
 	}
 
