@@ -1,20 +1,16 @@
 package tira_laskari_10_4;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.TreeSet;
 
 public class Tira_Laskari_10_4 {
 
 	public static boolean kaksijakoinen(TreeSet<Integer>[] verkko) {
 		int[] solmujenVarit = new int[verkko.length];
-		System.out.println(Arrays.toString(solmujenVarit));
 		solmujenVarit[0] = 1;
 		for (int i = 0; i < verkko.length; i++) {
 			int vari = solmujenVarit[i] == 1 ? 2 : 1;
 			TreeSet<Integer> naapurit = verkko[i];
-			
-		System.out.println(Arrays.toString(solmujenVarit));
 			for (Integer solmu : naapurit) {
 				if (solmujenVarit[solmu] != 0 && solmujenVarit[solmu] != vari) {
 					return false;

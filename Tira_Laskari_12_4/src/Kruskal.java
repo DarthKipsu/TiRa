@@ -1,5 +1,4 @@
 
-import java.util.ArrayDeque;
 import java.util.PriorityQueue;
 
 
@@ -9,12 +8,14 @@ public class Kruskal {
 	private boolean[] kaydyt;
 	private PriorityQueue<Solmu> pino;
 	private long paino;
+	private int solmujaYhdistetty;
 
 	public Kruskal(int[][] verkko) {
 		this.verkko = verkko;
 		paino = 0;
 		kaydyt = new boolean[verkko.length];
 		pino = new PriorityQueue<>();
+		solmujaYhdistetty = 1;
 		lisaaKaaretPinoon(verkko);
 	}
 
@@ -31,7 +32,7 @@ public class Kruskal {
 	}
 	
 	public long pieninVirittava() {
-		while (!pino.isEmpty()) {
+		while (!pino.isEmpty() && solmujaYhdistetty < kaydyt.length) {
 			Solmu solmu = pino.poll();
 			int mista = solmu.getMista();
 			int minne = solmu.getMinne();

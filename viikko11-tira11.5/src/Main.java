@@ -9,8 +9,6 @@ public class Main {
 	private static PriorityQueue<Solmu> keko;
     
     public static long reittimaara(int n, int[] mista, int[] minne, int[] matka) {
-		alustaMuuttujat(n);
-		luoVerkko(mista, minne, matka);
 		laskeEtaisyydet();
 		return reittienMaarat[n];
     }
