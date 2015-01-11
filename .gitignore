@@ -3,3 +3,7 @@
 *private/
 *private.xml
 *build.xml
+/Tira_Laskari_5_4/dist/
+/viikko08-tira8.2/dist/
+/viikko10-tira10.2/dist/
+*genfiles.properties
