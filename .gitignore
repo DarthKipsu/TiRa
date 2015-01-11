@@ -8,3 +8,6 @@
 /viikko08-tira8.2/dist/
 /viikko10-tira10.2/dist/
 *genfiles.properties
+nbproject/
+build.xml
+manifest.mf
