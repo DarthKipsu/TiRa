@@ -6,3 +6,30 @@ This project is for studying the use of different algorithms and data structures
 Language used in the exercises is Java, but the basic ideas behing them can be implemented in other languages as well.
 
 My solutions to weekly exercises will only be pushed to the repository once their deadlines have passed. They may or may not be similar to the model solutions and should not be used as such.
+
+Contents
+-------
+
+**Tira01** Time complexities
+
+**Tira02** Logarithms and oredering
+
+**Tira03** Recursion
+
+**Tira04** Deques and linked lists
+
+**Tira05** Binary trees
+
+**Tira06** Self-balancing binary searh trees
+
+**Tira07** Hashes
+
+**Tira08** Queues
+
+**Tira09** Sorting algorithms
+
+**Tira10** Graphs
+
+**Tira11** Graph search algorithms
+
+**Tira12** Minimum spanning trees
