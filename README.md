@@ -33,3 +33,7 @@ Contents
 **Tira11** Graph search algorithms
 
 **Tira12** Minimum spanning trees
+
+**Alon01** Search algorithms
+
+**Alon02** Sets and array tricks
