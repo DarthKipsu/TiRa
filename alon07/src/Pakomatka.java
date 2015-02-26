@@ -19,7 +19,6 @@ public class Pakomatka {
 	private static long maxFlow;
 	private static Map<Integer, Set<Integer>> cuts;
 	private static boolean[] visited;
-	private static Set<Integer> x;
 
 	public static void main(String[] args) {
 		io = new IO();
@@ -87,9 +86,7 @@ public class Pakomatka {
 		cuts = new HashMap<>();
 		visited = new boolean[n + 1];
 		Queue<Integer> queue = new PriorityQueue<>();
-		x = new HashSet<>();
 		queue.add(1);
-		x.add(1);
 		while (!queue.isEmpty()) {
 			int node = queue.poll();
 			if (visited[node]) continue;
@@ -103,7 +100,6 @@ public class Pakomatka {
 				} else {
 					if (capacity[node][nextNode] != 0 || residual[node][nextNode] < 0) {
 						queue.add(nextNode);
-						x.add(nextNode);
 					}
 				}
 			}
