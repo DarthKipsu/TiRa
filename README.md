@@ -37,3 +37,13 @@ Contents
 **Alon01** Search algorithms
 
 **Alon02** Sets and array tricks
+
+**Alon03** Segment trees
+
+**Alon04** Dynamic programming part 1
+
+**Alon05** Dynamic programming part 2 and bit operations
+
+**Alon06** Graphs
+
+**Alon07** Flow networks
