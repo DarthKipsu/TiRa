@@ -47,3 +47,17 @@ Contents
 **Alon06** Graphs
 
 **Alon07** Flow networks
+
+**Alon08** Eulerian cycle and strongly connected components
+
+**Alon09** String matching algorithms
+
+**Alon10** Trie and suffix
+
+**Alon11** Trees
+
+**Alon12** Combinatorics
+
+**Alon13** Number theory
+
+**Alon14** Game theory
