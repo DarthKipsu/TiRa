@@ -1,3 +1,5 @@
+*.swp
+sem/
 *~
 */build/
 *.class
@@ -15,3 +17,5 @@ manifest.mf
 /alon07/dist/
 /alon08/dist/
 /alon10/dist/
+/Alon15/
+/OhjelmointiPutka/
