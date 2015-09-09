@@ -3,6 +3,8 @@ Algorithm exercises
 
 This project is for studying the use of different algorithms and data structures. The project contains exercises from Helsinki University algorithms & datastructures course, autumn 2014 and algorithms in problem solving course, spring 2015.
 
+The practice folder contains some algorithm and datastructure practicing before tech interviews. They have been first coded on either Google Docs or paper and then moved to IDE to check errors.
+
 Language used in the exercises is Java, but the basic ideas behing them can be implemented in other languages as well.
 
 My solutions to weekly exercises will only be pushed to the repository once their deadlines have passed. They may or may not be similar to the model solutions and should not be used as such.
