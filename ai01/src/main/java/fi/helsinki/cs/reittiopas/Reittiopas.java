@@ -1,5 +1,9 @@
 package fi.helsinki.cs.reittiopas;
 
+import java.util.ArrayDeque;
+import java.util.Collection;
+import java.util.Deque;
+
 public class Reittiopas {
 
     /**
@@ -16,8 +20,24 @@ public class Reittiopas {
      * @return Tila-olioista koostuva linkitetty lista maalista lähtötilaan
      */
     public Tila haku(Pysakki lahto, Pysakki maali) {
-        //toteuta leveyssuuntainen haku
-        //Tila tila = new Tila(lahto, null);
+        Deque<Tila> tilat = new ArrayDeque<>();
+        tilat.addLast(new Tila(lahto, null));
+        while (tilat.peekFirst() != null) {
+            Tila tila = tilat.pollFirst();
+            Pysakki pysakki = tila.getPysakki();
+            if (pysakki.isNotVisited()) {
+                pysakki.visit();
+                if (pysakki.equals(maali)) {
+                    return tila;
+                }
+                Collection<Pysakki> naapurit = pysakki.getNaapurit();
+                for (Pysakki naapuri : naapurit) {
+                    if (naapuri.isNotVisited()) {
+                        tilat.addLast(new Tila(naapuri, tila));
+                    }
+                }
+            }
+        }
         return null;
     }
 }

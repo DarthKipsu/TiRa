@@ -36,6 +36,8 @@ public class Pysakki {
      * Pysäkin y-koordinaatti.
      */
     private int y;
+    
+    private boolean visited;
 
     /**
      * Pysäkin naapuripysäkit ja kaikki ko. pysäkille kulkevat linjat (niiden
@@ -53,6 +55,7 @@ public class Pysakki {
         this.x = 0;
         this.y = 0;
         this.naapurit = new HashMap<String, String[]>();
+        visited = false;
     }
 
     public String toString() {
@@ -75,6 +78,14 @@ public class Pysakki {
      */
     public Collection<Pysakki> getNaapurit() {
         return this.naapuriPysakit;
+    }
+
+    public boolean isNotVisited() {
+        return !visited;
+    }
+
+    public void visit() {
+        this.visited = true;
     }
 
     @Override
