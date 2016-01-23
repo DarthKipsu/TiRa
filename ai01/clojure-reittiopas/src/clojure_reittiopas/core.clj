@@ -15,4 +15,4 @@
   "Search shortest route from node to node in verkko.json"
   [& args]
   (let [graph (tram-graph "resources/verkko.json")]
-    (print-stops (searh-route graph "1250429" "1121480") graph)))
+    (print-stops (searh-route graph (first args) (second args)) graph)))
