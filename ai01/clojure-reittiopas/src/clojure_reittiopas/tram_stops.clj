@@ -1,7 +1,7 @@
 (ns clojure-reittiopas.tram-stops)
 
 (defn restv [a-vec]
-  (vec (rest a-vec)))
+  (apply vector (rest a-vec)))
 
 (defn id [stop]
   (get stop "koodi"))
