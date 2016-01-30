@@ -52,6 +52,8 @@ public class Pysakki {
 
     private Collection<Linja> linjat;
 
+    private boolean visited;
+
     public Pysakki() {
         this.koodi = "";
         this.osoite = "";
@@ -59,6 +61,7 @@ public class Pysakki {
         this.x = 0;
         this.y = 0;
         this.naapurit = new HashMap<String, String[]>();
+        visited = false;
     }
 
     @Override
@@ -97,6 +100,14 @@ public class Pysakki {
 
     public Collection<Linja> getLinjat() {
         return this.linjat;
+    }
+
+    public boolean isNotVisited() {
+        return !visited;
+    }
+
+    public void visit() {
+        this.visited = true;
     }
 
 //    /**

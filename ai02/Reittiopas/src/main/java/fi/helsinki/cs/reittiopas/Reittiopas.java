@@ -2,6 +2,7 @@ package fi.helsinki.cs.reittiopas;
 
 import fi.helsinki.cs.reittiopas.logiikka.Pysakki;
 import fi.helsinki.cs.reittiopas.logiikka.Tila;
+import java.util.Collection;
 import java.util.PriorityQueue;
 
 public class Reittiopas {
@@ -37,7 +38,27 @@ public class Reittiopas {
         this.vertailija = new Vertailija(maali);
         PriorityQueue<Tila> tutkittavat = new PriorityQueue<>(vertailija);
         Tila alkutila = new Tila(lahto, null, aikaAlussa); //(pysäkki, edellinen tila, kulunut aika)
-        // ... ... ...
+        tutkittavat.add(alkutila);
+        
+        while (tutkittavat.peek() != null) {
+            Tila tila = tutkittavat.poll();
+            Pysakki pysakki = tila.getPysakki();
+            if (pysakki.isNotVisited()) {
+                pysakki.visit();
+                if (pysakki.equals(maali)) {
+                    return tila;
+                }
+                Collection<Pysakki> naapurit = pysakki.getNaapurit();
+                for (Pysakki naapuri : naapurit) {
+                    if (naapuri.isNotVisited()) {
+                        int nykyinenAika = tila.getNykyinenAika();
+                        int aikaNaapuriin = nykyinenAika + 
+                                pysakki.nopeinSiirtyma(naapuri, nykyinenAika);
+                        tutkittavat.add(new Tila(naapuri, tila, aikaNaapuriin));
+                    }
+                }
+            }
+        }
         return null;
     }
 }

@@ -11,9 +11,13 @@ import java.util.Comparator;
 public class Vertailija implements Comparator<Tila> {
 
     private final Pysakki maali;
+    private final int x1;
+    private final int y1;
 
     public Vertailija(Pysakki maaliPysakki) {
         this.maali = maaliPysakki;
+        x1 = maali.getX();
+        y1 = maali.getY();
     }
 
     /**
@@ -27,7 +31,10 @@ public class Vertailija implements Comparator<Tila> {
      * @return Arvioitu jäljelläoleva aika
      */
     public double heuristiikka(Pysakki pysakki) {
-        return 0.0;
+        int x2 = pysakki.getX();
+        int y2 = pysakki.getY();
+        double etaisyys = Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
+        return etaisyys / 260;
     }
 
     /**
@@ -47,7 +54,9 @@ public class Vertailija implements Comparator<Tila> {
      */
     @Override
     public int compare(Tila t1, Tila t2) {
-        return 0;
+        double t1Aika = t1.getNykyinenAika() + heuristiikka(t1.getPysakki());
+        double t2Aika = t2.getNykyinenAika() + heuristiikka(t2.getPysakki());
+        return (int)(t1Aika - t2Aika);
     }
 
 }
