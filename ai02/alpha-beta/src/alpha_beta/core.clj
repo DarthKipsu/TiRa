@@ -2,8 +2,6 @@
   (:gen-class))
 
 (def prefilled-grid [:o :x :o :x nil :x nil :o nil])
-(def win-grid [:o :x :o :x :x :x nil :o nil])
-(def full-grid [:o :x :o :o :x :x :x :o :o])
 
 (def empty-grid (apply vector (take 9 (repeat nil))))
 
@@ -33,9 +31,48 @@
         (= :x outcome) -1
         (= :tie outcome) 0))
 
+(defn- winner [outcome]
+  (cond (= 1 outcome) "O"
+        (= -1 outcome) "X"
+        :else "tie"))
+
+(defn- try-move [grid sign square]
+  (assoc grid square sign))
+
+(defn- next-grids
+  ([grid sign] (next-grids grid sign '() 0))
+  ([grid sign kids square]
+   (cond (= 9 square) kids
+         (not (nil? (get grid square))) (recur grid sign kids (inc square))
+         :else (recur grid sign (conj kids (try-move grid sign square)) (inc square)))))
+
+(declare min-value)
+
+(defn- max-value 
+  ([grid, alpha, beta]
+   (let [end (end-state? grid)]
+     (if end (value end)
+       (max-value (next-grids grid :x) alpha beta Integer/MIN_VALUE))))
+  ([grids alpha beta v]
+   (let [new-v (max v (min-value (first grids) alpha beta))]
+     (cond (>= new-v beta) new-v
+           (empty? (rest grids)) new-v
+           :else (recur (rest grids) (max new-v alpha) beta new-v)))))
+
+(defn- min-value 
+  ([grid, alpha, beta]
+   (let [end (end-state? grid)]
+     (if end (value end)
+       (min-value (next-grids grid :o) alpha beta Integer/MAX_VALUE))))
+  ([grids alpha beta v]
+   (let [new-v (min v (max-value (first grids) alpha beta))]
+     (cond (<= new-v alpha) new-v
+           (empty? (rest grids)) new-v
+           :else (recur (rest grids) alpha (min new-v beta) new-v)))))
+
+(defn alpha-beta-value [grid]
+  (min-value grid -1 1))
+
 (defn -main [& args]
-  (println empty-grid)
-  (println prefilled-grid)
-  (println (end-state? prefilled-grid) (end-state? win-grid) (end-state? full-grid))
-  (println (value (end-state? win-grid)) (value (end-state? full-grid)))
-  )
+  (println "Winner with prefilled game:" (winner (alpha-beta-value prefilled-grid)))
+  (println "Winner with empty grid:" (winner (alpha-beta-value empty-grid))))
