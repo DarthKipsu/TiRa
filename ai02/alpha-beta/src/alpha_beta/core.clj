@@ -73,6 +73,9 @@
 (defn alpha-beta-value [grid]
   (min-value grid -1 1))
 
-(defn -main [& args]
+(defn -main
+  "Calculates the winner for a game of tic-tac-toe with 3x3 grid, given the current game status and
+  assuming both players play optimal game."
+  [& args]
   (println "Winner with prefilled game:" (winner (alpha-beta-value prefilled-grid)))
   (println "Winner with empty grid:" (winner (alpha-beta-value empty-grid))))
