@@ -129,6 +129,7 @@ public class Main {
 
             assert p.whiteToMove != bestPosition.whiteToMove;
             p = bestPosition;
+            System.out.println("Eval: " + oe.eval(p));
             p.print();
 
             long curtime = System.currentTimeMillis();
