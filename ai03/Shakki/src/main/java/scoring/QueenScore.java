@@ -53,9 +53,9 @@ public class QueenScore extends PieceScore {
             for (int j = 0; j < X_MOVES[0].length; j++) {
                 int x = coordinate.getX() + X_MOVES[i][j];
                 int y = coordinate.getY() + Y_MOVES[i][j];
-                if (isOutsideBoard(x, y)) continue;
+                if (isOutsideBoard(x, y)) break;
                 protectionScore += friendlyPieceProtectionValue(x, y);
-                if (slidedAsFarAsPossible(x, y)) continue;
+                if (slidedAsFarAsPossible(x, y)) break;
             }
         }
         return protectionScore;

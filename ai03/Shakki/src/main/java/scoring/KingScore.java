@@ -5,7 +5,7 @@ import position.Position;
 
 public class KingScore extends PieceScore {
     
-    private static final double BASE_SCORE = 1000;
+    private static final double BASE_SCORE = 500;
     private static final int[] X_MOVES = {1, 1, 1, 0, 0, -1, -1, -1};
     private static final int[] Y_MOVES = {1, 0, -1, 1, -1, 1, 0, -1};
     
@@ -24,6 +24,7 @@ public class KingScore extends PieceScore {
     public double getScore() {
         double score = 0;
         if (hasKing) {
+            if (sideCoefficient == 1) score += BASE_SCORE;
             score += BASE_SCORE;
             score += protectionBonus();
         }
