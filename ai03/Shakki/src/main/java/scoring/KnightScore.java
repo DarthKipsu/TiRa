@@ -1,6 +1,8 @@
 
 package scoring;
 
+import position.Position;
+
 public class KnightScore extends PieceScore {
     
     private static final double BASE_SCORE = 3;
@@ -9,8 +11,8 @@ public class KnightScore extends PieceScore {
     private boolean[] hasKnight = new boolean[3];
     private Coordinate[] coordinates = new Coordinate[3];
 
-    public KnightScore(int sideCoefficient) {
-        super(sideCoefficient);
+    public KnightScore(int sideCoefficient, Position p) {
+        super(sideCoefficient, p);
     }
 
     public void addPiece(int x, int y) {

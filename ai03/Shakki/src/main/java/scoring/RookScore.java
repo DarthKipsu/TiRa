@@ -1,6 +1,8 @@
 
 package scoring;
 
+import position.Position;
+
 public class RookScore extends PieceScore {
     
     private static final double BASE_SCORE = 5;
@@ -9,8 +11,8 @@ public class RookScore extends PieceScore {
     private boolean[] hasRook = new boolean[3];
     private Coordinate[] coordinates = new Coordinate[3];
 
-    public RookScore(int sideCoefficient) {
-        super(sideCoefficient);
+    public RookScore(int sideCoefficient, Position p) {
+        super(sideCoefficient, p);
     }
 
     public void addPiece(int x, int y) {

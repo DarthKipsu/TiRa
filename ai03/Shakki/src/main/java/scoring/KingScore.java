@@ -1,6 +1,8 @@
 
 package scoring;
 
+import position.Position;
+
 public class KingScore extends PieceScore {
     
     private static final double BASE_SCORE = 1000;
@@ -8,8 +10,8 @@ public class KingScore extends PieceScore {
     private boolean hasKing = false;
     private Coordinate coordinate = null;
 
-    public KingScore(int sideCoefficient) {
-        super(sideCoefficient);
+    public KingScore(int sideCoefficient, Position p) {
+        super(sideCoefficient, p);
     }
 
     public void addPiece(int x, int y) {

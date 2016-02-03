@@ -17,18 +17,18 @@ public class YourEvaluator extends Evaluator{
 		double ret = 0;
         pieceScores = new PieceScore[] {
             null,
-            new KingScore(1),
-            new QueenScore(1),
-            new RookScore(1),
+            new KingScore(1, p),
+            new QueenScore(1, p),
+            new RookScore(1, p),
             null,
-            new KnightScore(1),
-            new PawnScore(1),
-            new KingScore(-1),
-            new QueenScore(-1),
-            new RookScore(-1),
+            new KnightScore(1, p),
+            new PawnScore(1, p),
+            new KingScore(-1, p),
+            new QueenScore(-1, p),
+            new RookScore(-1, p),
             null,
-            new KnightScore(-1),
-            new PawnScore(-1)
+            new KnightScore(-1, p),
+            new PawnScore(-1, p)
         };
 		for(int x = 0; x < p.board.length; ++x) {
 			for(int y = 0; y < p.board[x].length; ++y) {

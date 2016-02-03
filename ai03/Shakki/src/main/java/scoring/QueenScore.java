@@ -1,6 +1,8 @@
 
 package scoring;
 
+import position.Position;
+
 public class QueenScore extends PieceScore {
     
     private static final double BASE_SCORE = 9;
@@ -8,8 +10,8 @@ public class QueenScore extends PieceScore {
     private boolean hasQueen = false;
     private Coordinate coordinate = null;
 
-    public QueenScore(int sideCoefficient) {
-        super(sideCoefficient);
+    public QueenScore(int sideCoefficient, Position p) {
+        super(sideCoefficient, p);
     }
 
     public void addPiece(int x, int y) {

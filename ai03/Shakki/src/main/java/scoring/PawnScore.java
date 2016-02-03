@@ -1,6 +1,8 @@
 
 package scoring;
 
+import position.Position;
+
 public class PawnScore extends PieceScore {
     
     private static final double BASE_SCORE = 1;
@@ -9,8 +11,8 @@ public class PawnScore extends PieceScore {
     private Coordinate[] coordinates = new Coordinate[7];
     private double advancementScore = 0;
 
-    public PawnScore(int sideCoefficient) {
-        super(sideCoefficient);
+    public PawnScore(int sideCoefficient, Position p) {
+        super(sideCoefficient, p);
     }
 
     public void addPiece(int x, int y) {
