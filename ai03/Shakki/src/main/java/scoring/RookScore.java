@@ -5,8 +5,8 @@ import position.Position;
 
 public class RookScore extends PieceScore {
     
-    private static final double BASE_SCORE = 5;
-    private static final double SYNERGETIC_BONUS = 5;
+    protected static final double BASE_SCORE = 5;
+    protected static final double SYNERGETIC_BONUS = 5;
     private static final int[][] X_MOVES = {
         {0, 0, 0, 0, 0, 0, 0},
         {0, 0, 0, 0, 0, 0, 0},

@@ -5,8 +5,8 @@ import position.Position;
 
 public class KnightScore extends PieceScore {
     
-    private static final double BASE_SCORE = 3;
-    private static final double SYNERGETIC_BONUS = 3;
+    protected static final double BASE_SCORE = 3;
+    protected static final double SYNERGETIC_BONUS = 3;
     private static final int[] X_MOVES = {-2, -2, -1, -1, 1, 1, 2, 2};
     private static final int[] Y_MOVES = {1, -1, 2, -2, 2, -2, 1, -1};
     

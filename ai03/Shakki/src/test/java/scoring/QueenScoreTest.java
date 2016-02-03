@@ -119,4 +119,17 @@ public class QueenScoreTest extends TestCase {
         p.board[3][0] = Position.WPawn;
         assertEquals(BASE_SCORE, qsw.getScore());
     }
+
+    public void testScoreWithTwoQueens() {
+        qsw.addPiece(4, 5);
+        qsw.addPiece(2, 2);
+        assertEquals(3 * BASE_SCORE, qsw.getScore());
+    }
+
+    public void testScoreWithThreeQueens() {
+        qsw.addPiece(2, 5);
+        qsw.addPiece(4, 5);
+        qsw.addPiece(2, 2);
+        assertEquals(5 * BASE_SCORE, qsw.getScore());
+    }
 }
