@@ -5,6 +5,8 @@ import position.Position;
 
 public abstract class PieceScore {
 
+    protected static final double PAWN_VALUE = 1;
+    protected static final double REST_VALUE = 2;
     int sideCoefficient;
     Position p;
 
@@ -26,13 +28,13 @@ public abstract class PieceScore {
         return p.board[x][y] != Position.Empty;
     }
 
-    int friendlyPieceProtectionValue(int x, int y) {
+    double friendlyPieceProtectionValue(int x, int y) {
         int piece = p.board[x][y];
         if ((sideCoefficient == 1 && Position.isWhitePiece(piece)) ||
                 (sideCoefficient == -1 && Position.isBlackPiece(piece))) {
-            if (isPawn(piece)) return 1;
+            if (isPawn(piece)) return PAWN_VALUE;
             if (isKing(piece)) return 0;
-            return 2;
+            return REST_VALUE;
         }
         return 0;
     }

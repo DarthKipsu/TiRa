@@ -5,7 +5,7 @@ import position.Position;
 
 public class QueenScore extends PieceScore {
     
-    private static final double BASE_SCORE = 9;
+    protected static final double BASE_SCORE = 9;
     private static final int[][] X_MOVES = {
         {0, 0, 0, 0, 0, 0, 0},
         {0, 0, 0, 0, 0, 0, 0},
