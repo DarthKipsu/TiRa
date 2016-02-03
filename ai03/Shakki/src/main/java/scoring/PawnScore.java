@@ -5,7 +5,7 @@ import position.Position;
 
 public class PawnScore extends PieceScore {
     
-    private static final double BASE_SCORE = 1;
+    protected static final double BASE_SCORE = 1;
     private static final int[] X_MOVES = {1, -1};
     private static final int[] Y_MOVES = {1, 1};
     
@@ -36,10 +36,9 @@ public class PawnScore extends PieceScore {
     }
 
     private double scoreAdvancement(int y) {
-        if (y==5) return 8;
-        if (y==4) return 4;
-        if (y==3) return 2;
-        if (y==2) return 1;
+        if (y==5) return 4;
+        if (y==4) return 2;
+        if (y==3) return 1;
         else return 0;
     }
 
