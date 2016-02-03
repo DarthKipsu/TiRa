@@ -1,13 +1,17 @@
 
 package scoring;
 
-public class RookScore implements PieceScore {
+public class RookScore extends PieceScore {
     
     private static final double BASE_SCORE = 5;
     private static final double SYNERGETIC_BONUS = 5;
     
     private boolean[] hasRook = new boolean[3];
     private Coordinate[] coordinates = new Coordinate[3];
+
+    public RookScore(int sideCoefficient) {
+        super(sideCoefficient);
+    }
 
     public void addPiece(int x, int y) {
         int id = hasRook[1] ? 2 : 1;
@@ -18,7 +22,7 @@ public class RookScore implements PieceScore {
         double score = 0;
         if (hasRook[1]) score += BASE_SCORE;
         if (hasRook[2]) score += BASE_SCORE + SYNERGETIC_BONUS;
-        return score;
+        return this.sideCoefficient * score;
     }
 
     private void addRook(int id, int x, int y) {

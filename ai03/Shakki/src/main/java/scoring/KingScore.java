@@ -1,12 +1,16 @@
 
 package scoring;
 
-public class KingScore implements PieceScore {
+public class KingScore extends PieceScore {
     
     private static final double BASE_SCORE = 1000;
     
     private boolean hasKing = false;
     private Coordinate coordinate = null;
+
+    public KingScore(int sideCoefficient) {
+        super(sideCoefficient);
+    }
 
     public void addPiece(int x, int y) {
         hasKing = true;
@@ -16,6 +20,6 @@ public class KingScore implements PieceScore {
     public double getScore() {
         double score = 0;
         if (hasKing) score += BASE_SCORE;
-        return score;
+        return this.sideCoefficient * score;
     }
 }

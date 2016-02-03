@@ -1,7 +1,14 @@
 
 package scoring;
 
-public interface PieceScore {
-    void addPiece(int x, int y);
-    double getScore();
+public abstract class PieceScore {
+
+    int sideCoefficient;
+
+    public PieceScore(int sideCoefficient) {
+        this.sideCoefficient = sideCoefficient;
+    }
+
+    abstract public void addPiece(int x, int y);
+    abstract public double getScore();
 }

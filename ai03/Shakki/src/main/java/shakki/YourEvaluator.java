@@ -8,28 +8,28 @@ import scoring.PieceScore;
 import scoring.QueenScore;
 import scoring.RookScore;
 
-
-
 public class YourEvaluator extends Evaluator{
 
     private PieceScore[] pieceScores;
-    boolean[] doubleExists;
-    double blackMaterialScore;
 
     @Override
     public double eval(Position p) {
 		double ret = 0;
         pieceScores = new PieceScore[] {
             null,
-            new KingScore(),
-            new QueenScore(),
-            new RookScore(),
+            new KingScore(1),
+            new QueenScore(1),
+            new RookScore(1),
             null,
-            new KnightScore(),
-            new PawnScore()
+            new KnightScore(1),
+            new PawnScore(1),
+            new KingScore(-1),
+            new QueenScore(-1),
+            new RookScore(-1),
+            null,
+            new KnightScore(-1),
+            new PawnScore(-1)
         };
-        doubleExists = new boolean[12];
-        blackMaterialScore = 0;
 		for(int x = 0; x < p.board.length; ++x) {
 			for(int y = 0; y < p.board[x].length; ++y) {
 				addPieceAt(p, x, y);
@@ -40,27 +40,12 @@ public class YourEvaluator extends Evaluator{
                 ret += ps.getScore();
             }
         }
-		return ret + blackMaterialScore;
+        return ret;
     }
 
     private void addPieceAt(Position p, int x, int y) {
         int position = p.board[x][y];
         if(position == Position.Empty) return;
-        if(position < 7) pieceScores[position].addPiece(x, y);
-        if(position == Position.BPawn) blackMaterialScore -= 1;
-        if(position == Position.BKing) blackMaterialScore -= 1000;
-        if(position == Position.BQueen) blackMaterialScore -= 9;
-        if(position == Position.BRook) {
-            blackMaterialScore -= withSynergeticBonus(5, position);
-        }
-        if(position == Position.BKnight) {
-            blackMaterialScore -= withSynergeticBonus(3, position);
-        }
-    }
-
-    private double withSynergeticBonus(double cost, int piece) {
-        if (doubleExists[piece]) return 2 * cost;
-        doubleExists[piece] = true;
-        return cost;
+        pieceScores[position].addPiece(x, y);
     }
 }

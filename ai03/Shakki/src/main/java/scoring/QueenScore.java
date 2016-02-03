@@ -1,12 +1,16 @@
 
 package scoring;
 
-public class QueenScore implements PieceScore {
+public class QueenScore extends PieceScore {
     
     private static final double BASE_SCORE = 9;
     
     private boolean hasQueen = false;
     private Coordinate coordinate = null;
+
+    public QueenScore(int sideCoefficient) {
+        super(sideCoefficient);
+    }
 
     public void addPiece(int x, int y) {
         hasQueen = true;
@@ -16,6 +20,6 @@ public class QueenScore implements PieceScore {
     public double getScore() {
         double score = 0;
         if (hasQueen) score += BASE_SCORE;
-        return score;
+        return this.sideCoefficient * score;
     }
 }
