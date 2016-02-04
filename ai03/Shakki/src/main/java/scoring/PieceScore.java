@@ -25,6 +25,10 @@ public abstract class PieceScore {
         return false;
     }
 
+    boolean isInsideBoard(int x, int y) {
+        return !isOutsideBoard(x, y);
+    }
+
     boolean slidedAsFarAsPossible(int x, int y) {
         return p.board[x][y] != Position.Empty;
     }

@@ -6,6 +6,7 @@ import position.Position;
 public class PawnScore extends PieceScore {
     
     protected static final double BASE_SCORE = 2;
+    protected static final double NEIGHBOUR_PENALTY = 0.5;
     private static final int[] X_MOVES = {1, -1};
     private static final int[] Y_MOVES = {1, 1};
     
@@ -27,6 +28,7 @@ public class PawnScore extends PieceScore {
         for (int i = 1; i <= pawnCount; i++) {
             score += protectionAndThreatBonuses(coordinates[i]);
         }
+        score -= penalizeHavingNeighbouringPawns();
         return this.sideCoefficient * score;
     }
 
@@ -46,6 +48,30 @@ public class PawnScore extends PieceScore {
             if (y==2) return 2;
         }
         return 0;
+    }
+
+    private double penalizeHavingNeighbouringPawns() {
+        double penalty = 0;
+        for (int i = 1; i <= pawnCount; i++) {
+            int x = coordinates[i].getX();
+            int y = coordinates[i].getY();
+            if (isInsideBoard(x + 1, y) && isFriendlyPawn(x + 1, y)) {
+                penalty += NEIGHBOUR_PENALTY;
+            }
+            if (isInsideBoard(x - 1, y) && isFriendlyPawn(x - 1, y)) {
+                penalty += NEIGHBOUR_PENALTY;
+            }
+        }
+        return penalty;
+    }
+
+    private boolean isFriendlyPawn(int x, int y) {
+        if (sideCoefficient == 1) {
+            if (p.board[x][y] == Position.WPawn) return true;
+        } else {
+            if (p.board[x][y] == Position.BPawn) return true;
+        }
+        return false;
     }
 
     private double protectionAndThreatBonuses(Coordinate coordinate) {

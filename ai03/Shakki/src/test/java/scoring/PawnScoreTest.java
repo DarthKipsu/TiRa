@@ -4,6 +4,7 @@ package scoring;
 import junit.framework.TestCase;
 import position.Position;
 import static scoring.PawnScore.BASE_SCORE;
+import static scoring.PawnScore.NEIGHBOUR_PENALTY;
 import static scoring.PieceScore.PAWN_VALUE;
 import static scoring.PieceScore.THREAT_MULTIPLIER;
 
@@ -85,6 +86,14 @@ public class PawnScoreTest extends TestCase {
         p.board[3][3] = Position.Empty;
         double scoreAfterQueenBeenEaten = psw.getScore();
         assertTrue(scoreWhenThreatning < scoreAfterQueenBeenEaten);
+    }
+
+    public void testNeighbouringPawnsPenalty() {
+        psw.addPiece(2, 2);
+        p.board[3][2] = Position.WPawn;
+        assertEquals(BASE_SCORE - NEIGHBOUR_PENALTY, psw.getScore());
+        p.board[1][2] = Position.WPawn;
+        assertEquals(BASE_SCORE - NEIGHBOUR_PENALTY - NEIGHBOUR_PENALTY, psw.getScore());
     }
     
 }

@@ -19,4 +19,8 @@ public class Coordinate {
         return y;
     }
 
+    public boolean isAt(int x, int y) {
+        return this.x == x && this.y == y;
+    }
+
 }
