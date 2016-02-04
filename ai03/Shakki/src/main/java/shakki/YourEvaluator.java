@@ -10,6 +10,7 @@ import scoring.RookScore;
 
 public class YourEvaluator extends Evaluator{
 
+    private static final double QUEEN_SYNERGY_BONUS = 5;
     private PieceScore[] pieceScores;
 
     @Override
@@ -47,5 +48,17 @@ public class YourEvaluator extends Evaluator{
         int position = p.board[x][y];
         if(position == Position.Empty) return;
         pieceScores[position].addPiece(x, y);
+    }
+
+    private double croosPieceSynergies(PieceScore q, PieceScore r, PieceScore k) {
+        QueenScore qs = (QueenScore)q;
+        double score = 0;
+        if (qs.hasQueen()) {
+            RookScore rs = (RookScore)r;
+            KnightScore ks = (KnightScore)k;
+            if (rs.hasRook()) score += 2 * QUEEN_SYNERGY_BONUS;
+            if (ks.hasKnight()) score += QUEEN_SYNERGY_BONUS;
+        }
+        return score;
     }
 }

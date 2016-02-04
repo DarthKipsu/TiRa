@@ -5,7 +5,7 @@ import position.Position;
 
 public class PawnScore extends PieceScore {
     
-    protected static final double BASE_SCORE = 1;
+    protected static final double BASE_SCORE = 2;
     private static final int[] X_MOVES = {1, -1};
     private static final int[] Y_MOVES = {1, 1};
     
@@ -25,7 +25,7 @@ public class PawnScore extends PieceScore {
         double score = pawnCount * BASE_SCORE;
         score += advancementScore;
         for (int i = 1; i <= pawnCount; i++) {
-            score += protectionBonus(coordinates[i]);
+            score += protectionAndThreatBonuses(coordinates[i]);
         }
         return this.sideCoefficient * score;
     }
@@ -36,20 +36,27 @@ public class PawnScore extends PieceScore {
     }
 
     private double scoreAdvancement(int y) {
-        if (y==5) return 4;
-        if (y==4) return 2;
-        if (y==3) return 1;
-        else return 0;
+        if (sideCoefficient == 1) {
+            if (y==5) return 8;
+            if (y==4) return 4;
+            if (y==3) return 2;
+        } else {
+            if (y==0) return 8;
+            if (y==1) return 4;
+            if (y==2) return 2;
+        }
+        return 0;
     }
 
-    private double protectionBonus(Coordinate coordinate) {
-        double protectionScore = 0;
+    private double protectionAndThreatBonuses(Coordinate coordinate) {
+        double score = 0;
         for (int i = 0; i < X_MOVES.length; i++) {
             int x = coordinate.getX() + X_MOVES[i];
             int y = coordinate.getY() + Y_MOVES[i];
             if (isOutsideBoard(x, y)) continue;
-            protectionScore += friendlyPieceProtectionValue(x, y);
+            score += friendlyPieceProtectionValue(x, y);
+            score += threatensEnemyValue(x, y, 6);
         }
-        return protectionScore;
+        return score;
     }
 }

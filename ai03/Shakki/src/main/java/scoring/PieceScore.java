@@ -6,7 +6,8 @@ import position.Position;
 public abstract class PieceScore {
 
     protected static final double PAWN_VALUE = 1;
-    protected static final double REST_VALUE = 2;
+    protected static final double REST_VALUE = 3;
+    protected static final double THREAT_MULTIPLIER = 1.5;
     int sideCoefficient;
     Position p;
 
@@ -30,11 +31,26 @@ public abstract class PieceScore {
 
     double friendlyPieceProtectionValue(int x, int y) {
         int piece = p.board[x][y];
+        if (piece == Position.Empty) return 0;
         if ((sideCoefficient == 1 && Position.isWhitePiece(piece)) ||
                 (sideCoefficient == -1 && Position.isBlackPiece(piece))) {
             if (isPawn(piece)) return PAWN_VALUE;
             if (isKing(piece)) return 0;
             return REST_VALUE;
+        }
+        return 0;
+    }
+
+    double threatensEnemyValue(int x, int y, int self) {
+        int piece = p.board[x][y];
+        if (piece == Position.Empty) return 0;
+        if ((sideCoefficient == 1 && Position.isBlackPiece(piece)) ||
+                (sideCoefficient == -1 && Position.isWhitePiece(piece))) {
+            if (piece > 6) piece -= 6;
+            if (self > piece) {
+                return (self - piece) * THREAT_MULTIPLIER;
+            }
+            return THREAT_MULTIPLIER;
         }
         return 0;
     }

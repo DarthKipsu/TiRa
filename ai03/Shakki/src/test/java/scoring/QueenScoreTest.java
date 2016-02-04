@@ -4,6 +4,7 @@ package scoring;
 import junit.framework.TestCase;
 import position.Position;
 import static scoring.PieceScore.PAWN_VALUE;
+import static scoring.PieceScore.THREAT_MULTIPLIER;
 import static scoring.QueenScore.BASE_SCORE;
 
 public class QueenScoreTest extends TestCase {
@@ -104,14 +105,14 @@ public class QueenScoreTest extends TestCase {
     public void testScoreWithEnemyPawnAsProtected() {
         qsw.addPiece(2, 2);
         p.board[2][5] = Position.BPawn;
-        assertEquals(BASE_SCORE, qsw.getScore());
+        assertEquals(BASE_SCORE + THREAT_MULTIPLIER, qsw.getScore());
     }
 
     public void testScoreWithOneProtectedPawnRightDownCornerButEnemyInTheWay() {
         qsw.addPiece(2, 2);
         p.board[4][0] = Position.WPawn;
         p.board[3][1] = Position.BPawn;
-        assertEquals(BASE_SCORE, qsw.getScore());
+        assertEquals(BASE_SCORE + THREAT_MULTIPLIER, qsw.getScore());
     }
 
     public void testScoreWherePawnNotInReach() {
@@ -131,5 +132,17 @@ public class QueenScoreTest extends TestCase {
         qsw.addPiece(4, 5);
         qsw.addPiece(2, 2);
         assertEquals(5 * BASE_SCORE, qsw.getScore());
+    }
+
+    public void testScoreWithThreatToEnemyKing() {
+        qsw.addPiece(2, 2);
+        p.board[0][2] = Position.BKing;
+        assertEquals(BASE_SCORE + (Position.WQueen - Position.WKing) * THREAT_MULTIPLIER, qsw.getScore());
+    }
+
+    public void testScoreWithThreatToEnemyQueen() {
+        qsw.addPiece(2, 2);
+        p.board[0][2] = Position.BQueen;
+        assertEquals(BASE_SCORE + THREAT_MULTIPLIER, qsw.getScore());
     }
 }

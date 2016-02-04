@@ -26,19 +26,20 @@ public class KingScore extends PieceScore {
         if (hasKing) {
             if (sideCoefficient == 1) score += BASE_SCORE;
             score += BASE_SCORE;
-            score += protectionBonus();
+            score += protectionAndThreatBonuses();
         }
         return this.sideCoefficient * score;
     }
 
-    private double protectionBonus() {
-        double protectionScore = 0;
+    private double protectionAndThreatBonuses() {
+        double score = 0;
         for (int i = 0; i < X_MOVES.length; i++) {
             int x = coordinate.getX() + X_MOVES[i];
             int y = coordinate.getY() + Y_MOVES[i];
             if (isOutsideBoard(x, y)) continue;
-            protectionScore += friendlyPieceProtectionValue(x, y);
+            score += friendlyPieceProtectionValue(x, y);
+            score += threatensEnemyValue(x, y, 1);
         }
-        return protectionScore;
+        return score;
     }
 }

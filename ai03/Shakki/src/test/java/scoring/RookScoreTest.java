@@ -4,6 +4,7 @@ package scoring;
 import junit.framework.TestCase;
 import position.Position;
 import static scoring.PieceScore.PAWN_VALUE;
+import static scoring.PieceScore.THREAT_MULTIPLIER;
 import static scoring.RookScore.BASE_SCORE;
 import static scoring.RookScore.SYNERGETIC_BONUS;
 
@@ -65,9 +66,9 @@ public class RookScoreTest extends TestCase {
     public void testWhiteRookWithVerticalEnemyPawns() {
         rsw.addPiece(2, 2);
         p.board[2][1] = Position.BPawn;
-        assertEquals(BASE_SCORE, rsw.getScore());
+        assertEquals(BASE_SCORE + THREAT_MULTIPLIER, rsw.getScore());
         p.board[2][5] = Position.BPawn;
-        assertEquals(BASE_SCORE, rsw.getScore());
+        assertEquals(BASE_SCORE + THREAT_MULTIPLIER + THREAT_MULTIPLIER, rsw.getScore());
     }
 
     public void testWhiteRookWithVerticalPawnsBlockedByEnemy() {
@@ -75,7 +76,7 @@ public class RookScoreTest extends TestCase {
         p.board[2][5] = Position.WPawn;
         assertEquals(BASE_SCORE + PAWN_VALUE, rsw.getScore());
         p.board[2][4] = Position.BPawn;
-        assertEquals(BASE_SCORE, rsw.getScore());
+        assertEquals(BASE_SCORE + THREAT_MULTIPLIER, rsw.getScore());
     }
 
     public void testWhiteRookWithPawnsOutOfReach() {
@@ -106,6 +107,24 @@ public class RookScoreTest extends TestCase {
         assertEquals(2 * -BASE_SCORE - SYNERGETIC_BONUS - PAWN_VALUE - PAWN_VALUE, rsb.getScore());
         p.board[2][5] = Position.BPawn;
         assertEquals(2 * -BASE_SCORE - SYNERGETIC_BONUS - PAWN_VALUE - PAWN_VALUE - PAWN_VALUE, rsb.getScore());
+    }
+
+    public void testWhiteRookThreatensEnemyKing() {
+        rsw.addPiece(2, 2);
+        p.board[2][1] = Position.BKing;
+        assertEquals(BASE_SCORE + (Position.WRook - Position.WKing) * THREAT_MULTIPLIER, rsw.getScore());
+    }
+
+    public void testWhiteRookThreatensEnemyQueen() {
+        rsw.addPiece(2, 2);
+        p.board[2][1] = Position.BQueen;
+        assertEquals(BASE_SCORE + (Position.WRook - Position.WQueen) * THREAT_MULTIPLIER, rsw.getScore());
+    }
+
+    public void testWhiteRookThreatensEnemyRook() {
+        rsw.addPiece(2, 2);
+        p.board[2][1] = Position.BRook;
+        assertEquals(BASE_SCORE + THREAT_MULTIPLIER, rsw.getScore());
     }
     
 }
