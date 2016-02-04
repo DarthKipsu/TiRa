@@ -40,12 +40,12 @@ public class Pawn extends Piece {
     private double scoreAdvancement(int y) {
         if (sideCoefficient == 1) {
             if (y==5) return 8;
-            if (y==4) return 4;
-            if (y==3) return 2;
+            if (y==4) return 6;
+            if (y==3) return 3;
         } else {
             if (y==0) return 8;
-            if (y==1) return 4;
-            if (y==2) return 2;
+            if (y==1) return 6;
+            if (y==2) return 3;
         }
         return 0;
     }
