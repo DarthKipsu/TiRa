@@ -61,6 +61,7 @@ public class Rook extends Piece {
                 if (isOutsideBoard(x, y)) break;
                 score += friendlyPieceProtectionValue(x, y);
                 score += threatensEnemyValue(x, y, 3);
+                score += mobilityValue(x, y, 3);
                 if (slidedAsFarAsPossible(x, y)) break;
             }
         }

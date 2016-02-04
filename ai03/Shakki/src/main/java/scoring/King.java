@@ -25,12 +25,12 @@ public class King extends Piece {
         double score = 0;
         if (hasKing) {
             score += BASE_SCORE;
-            score += protectionAndThreatBonuses();
+            score += protectionMobilityAndThreatBonuses();
         }
         return this.sideCoefficient * score;
     }
 
-    private double protectionAndThreatBonuses() {
+    private double protectionMobilityAndThreatBonuses() {
         double score = 0;
         for (int i = 0; i < X_MOVES.length; i++) {
             int x = coordinate.getX() + X_MOVES[i];
@@ -38,6 +38,7 @@ public class King extends Piece {
             if (isOutsideBoard(x, y)) continue;
             score += friendlyPieceProtectionValue(x, y);
             score += threatensEnemyValue(x, y, 1);
+            score += mobilityValue(x, y, 1);
         }
         return score;
     }

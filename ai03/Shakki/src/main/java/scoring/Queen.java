@@ -50,12 +50,12 @@ public class Queen extends Piece {
         score += queenCount * BASE_SCORE;
         for (int i = 1; i <= queenCount; i++) {
             if (i > 1) score += BASE_SCORE;
-            score += protectionAndThreatBonuses(coordinates[i]);
+            score += protectionMobilityAndThreatBonuses(coordinates[i]);
         }
         return this.sideCoefficient * score;
     }
 
-    private double protectionAndThreatBonuses(Coordinate coordinate) {
+    private double protectionMobilityAndThreatBonuses(Coordinate coordinate) {
         double score = 0;
         for (int i = 0; i < X_MOVES.length; i++) {
             for (int j = 0; j < X_MOVES[0].length; j++) {
@@ -64,6 +64,7 @@ public class Queen extends Piece {
                 if (isOutsideBoard(x, y)) break;
                 score += friendlyPieceProtectionValue(x, y);
                 score += threatensEnemyValue(x, y, 2);
+                score += mobilityValue(x, y, 2);
                 if (slidedAsFarAsPossible(x, y)) break;
             }
         }

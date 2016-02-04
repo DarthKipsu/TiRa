@@ -52,6 +52,7 @@ public class Knight extends Piece {
             if (isOutsideBoard(x, y)) continue;
             score += friendlyPieceProtectionValue(x, y);
             score += threatensEnemyValue(x, y, 5);
+            score += mobilityValue(x, y, 5);
         }
         return score;
     }

@@ -8,6 +8,7 @@ package scoring;
 import junit.framework.TestCase;
 import position.Position;
 import static scoring.King.BASE_SCORE;
+import static scoring.Piece.MOBILITY_BONUS;
 import static scoring.Piece.PAWN_VALUE;
 import static scoring.Piece.THREAT_MULTIPLIER;
 
@@ -35,12 +36,12 @@ public class KingScoreTest extends TestCase {
 
     public void testScoreWithOneKing() {
         ksw.addPiece(2, 2);
-        assertEquals(BASE_SCORE, ksw.getScore());
+        assertEquals(BASE_SCORE + 8*MOBILITY_BONUS, ksw.getScore());
     }
 
     public void testScoreWithOneBlackKing() {
         ksb.addPiece(2, 2);
-        assertEquals(-BASE_SCORE, ksb.getScore());
+        assertEquals(-BASE_SCORE - 8*MOBILITY_BONUS, ksb.getScore());
     }
 
     public void testScoreWithNoKing() {
@@ -50,54 +51,54 @@ public class KingScoreTest extends TestCase {
     public void testProtectionScoreWithOneProtectedPiece1() {
         p.board[2][3] = Position.WPawn;
         ksw.addPiece(2, 2);
-        assertEquals(BASE_SCORE + PAWN_VALUE, ksw.getScore());
+        assertEquals(BASE_SCORE + 7*MOBILITY_BONUS + PAWN_VALUE, ksw.getScore());
     }
 
     public void testProtectionScoreWithOneProtectedPiece2() {
         p.board[3][3] = Position.WPawn;
         ksw.addPiece(2, 2);
-        assertEquals(BASE_SCORE + PAWN_VALUE, ksw.getScore());
+        assertEquals(BASE_SCORE + 7*MOBILITY_BONUS + PAWN_VALUE, ksw.getScore());
     }
 
     public void testProtectionScoreWithOneProtectedPiece3() {
         p.board[1][2] = Position.WPawn;
         ksw.addPiece(2, 2);
-        assertEquals(BASE_SCORE + PAWN_VALUE, ksw.getScore());
+        assertEquals(BASE_SCORE + 7*MOBILITY_BONUS + PAWN_VALUE, ksw.getScore());
     }
 
     public void testProtectionScoreWithBlackProtectedPiece() {
         p.board[2][3] = Position.BPawn;
         ksb.addPiece(2, 2);
-        assertEquals(-BASE_SCORE - PAWN_VALUE, ksb.getScore());
+        assertEquals(-BASE_SCORE - 7*MOBILITY_BONUS - PAWN_VALUE, ksb.getScore());
     }
 
     public void testProtectionScoreWithProtectedPieceOutOfReach() {
         p.board[0][2] = Position.WPawn;
         ksw.addPiece(2, 2);
-        assertEquals(BASE_SCORE, ksw.getScore());
+        assertEquals(BASE_SCORE + 8*MOBILITY_BONUS, ksw.getScore());
     }
 
     public void testProtectionScoreWithTwoProtectedPieces() {
         p.board[3][1] = Position.WPawn;
         p.board[1][3] = Position.WPawn;
         ksw.addPiece(2, 2);
-        assertEquals(BASE_SCORE + PAWN_VALUE + PAWN_VALUE, ksw.getScore());
+        assertEquals(BASE_SCORE + 6*MOBILITY_BONUS + PAWN_VALUE + PAWN_VALUE, ksw.getScore());
     }
 
     public void testScoreWhenKingOnTheEdge() {
         ksw.addPiece(0, 5);
-        assertEquals(BASE_SCORE, ksw.getScore());
+        assertEquals(BASE_SCORE + 3*MOBILITY_BONUS, ksw.getScore());
     }
 
     public void testwithEnemyPawn() {
         p.board[1][2] = Position.BPawn;
         ksw.addPiece(2, 2);
-        assertEquals(BASE_SCORE + THREAT_MULTIPLIER, ksw.getScore());
+        assertEquals(BASE_SCORE + 7*MOBILITY_BONUS + THREAT_MULTIPLIER, ksw.getScore());
     }
 
     public void testThreatScoreWithEnemyUnitNotBeingThreat() {
         p.board[2][3] = Position.BPawn;
         ksw.addPiece(2, 2);
-        assertEquals(BASE_SCORE + THREAT_MULTIPLIER, ksw.getScore());
+        assertEquals(BASE_SCORE + 7*MOBILITY_BONUS + THREAT_MULTIPLIER, ksw.getScore());
     }
 }

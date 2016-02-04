@@ -78,11 +78,14 @@ public class Pawn extends Piece {
         double score = 0;
         for (int i = 0; i < X_MOVES.length; i++) {
             int x = coordinate.getX() + X_MOVES[i];
-            int y = coordinate.getY() + Y_MOVES[i];
+            int y = coordinate.getY() + sideCoefficient * Y_MOVES[i];
             if (isOutsideBoard(x, y)) continue;
             score += friendlyPieceProtectionValue(x, y);
             score += threatensEnemyValue(x, y, 6);
         }
+        int x = coordinate.getX();
+        int y = coordinate.getY() + sideCoefficient;
+        if (isInsideBoard(x, y)) score += mobilityValue(x, y, 6);
         return score;
     }
 }

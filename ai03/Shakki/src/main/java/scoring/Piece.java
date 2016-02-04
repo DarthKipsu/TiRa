@@ -8,6 +8,7 @@ public abstract class Piece {
     protected static final double PAWN_VALUE = 1;
     protected static final double REST_VALUE = 3;
     protected static final double THREAT_MULTIPLIER = 1.5;
+    protected static final double MOBILITY_BONUS = 0.2;
     int sideCoefficient;
     Position p;
 
@@ -33,11 +34,23 @@ public abstract class Piece {
         return p.board[x][y] != Position.Empty;
     }
 
+    boolean countsForMobility(int x, int y, int self) {
+        int piece = p.board[x][y];
+        if (piece == Position.Empty) return true;
+        if (isFriendlyPiece(piece)) return false;
+        if (piece > 6) piece -= 6;
+        return piece < self;
+    }
+
+    double mobilityValue(int x, int y, int self) {
+        if (countsForMobility(x, y, self)) return MOBILITY_BONUS;
+        return 0;
+    }
+
     double friendlyPieceProtectionValue(int x, int y) {
         int piece = p.board[x][y];
         if (piece == Position.Empty) return 0;
-        if ((sideCoefficient == 1 && Position.isWhitePiece(piece)) ||
-                (sideCoefficient == -1 && Position.isBlackPiece(piece))) {
+        if (isFriendlyPiece(piece)) {
             if (isPawn(piece)) return PAWN_VALUE;
             if (isKing(piece)) return 0;
             return REST_VALUE;
@@ -57,6 +70,11 @@ public abstract class Piece {
             return THREAT_MULTIPLIER;
         }
         return 0;
+    }
+
+    private boolean isFriendlyPiece(int piece) {
+        return (sideCoefficient == 1 && Position.isWhitePiece(piece)) ||
+                (sideCoefficient == -1 && Position.isBlackPiece(piece));
     }
 
     private boolean isPawn(int piece) {
