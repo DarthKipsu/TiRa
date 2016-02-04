@@ -41,6 +41,8 @@ public class YourEvaluator extends Evaluator{
                 ret += ps.getScore();
             }
         }
+        ret += crossPieceSynergies(pieceScores[2], pieceScores[3], pieceScores[5]);
+        ret -= crossPieceSynergies(pieceScores[8], pieceScores[9], pieceScores[11]);
         return ret;
     }
 
@@ -50,7 +52,7 @@ public class YourEvaluator extends Evaluator{
         pieceScores[position].addPiece(x, y);
     }
 
-    private double croosPieceSynergies(PieceScore q, PieceScore r, PieceScore k) {
+    private double crossPieceSynergies(PieceScore q, PieceScore r, PieceScore k) {
         QueenScore qs = (QueenScore)q;
         double score = 0;
         if (qs.hasQueen()) {
