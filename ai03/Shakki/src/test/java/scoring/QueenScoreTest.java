@@ -3,14 +3,14 @@ package scoring;
 
 import junit.framework.TestCase;
 import position.Position;
-import static scoring.PieceScore.PAWN_VALUE;
-import static scoring.PieceScore.THREAT_MULTIPLIER;
-import static scoring.QueenScore.BASE_SCORE;
+import static scoring.Piece.PAWN_VALUE;
+import static scoring.Piece.THREAT_MULTIPLIER;
+import static scoring.Queen.BASE_SCORE;
 
 public class QueenScoreTest extends TestCase {
     
-    private QueenScore qsw;
-    private QueenScore qsb;
+    private Queen qsw;
+    private Queen qsb;
     private Position p;
     
     public QueenScoreTest(String testName) {
@@ -21,8 +21,8 @@ public class QueenScoreTest extends TestCase {
     protected void setUp() throws Exception {
         super.setUp();
         p = new Position();
-        qsw = new QueenScore(1, p);
-        qsb = new QueenScore(-1, p);
+        qsw = new Queen(1, p);
+        qsb = new Queen(-1, p);
     }
 
     public void testScoreWithNoQueen() {

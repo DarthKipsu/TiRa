@@ -7,9 +7,9 @@ package scoring;
 
 import junit.framework.TestCase;
 import position.Position;
-import static scoring.KingScore.BASE_SCORE;
-import static scoring.PieceScore.PAWN_VALUE;
-import static scoring.PieceScore.THREAT_MULTIPLIER;
+import static scoring.King.BASE_SCORE;
+import static scoring.Piece.PAWN_VALUE;
+import static scoring.Piece.THREAT_MULTIPLIER;
 
 /**
  *
@@ -21,16 +21,16 @@ public class KingScoreTest extends TestCase {
         super(testName);
     }
     
-    private KingScore ksw;
-    private KingScore ksb;
+    private King ksw;
+    private King ksb;
     private Position p;
     
     @Override
     protected void setUp() throws Exception {
         super.setUp();
         p = new Position();
-        ksw = new KingScore(1, p);
-        ksb = new KingScore(-1, p);
+        ksw = new King(1, p);
+        ksb = new King(-1, p);
     }
 
     public void testScoreWithOneKing() {

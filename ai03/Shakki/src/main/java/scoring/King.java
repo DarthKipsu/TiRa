@@ -3,16 +3,16 @@ package scoring;
 
 import position.Position;
 
-public class KingScore extends PieceScore {
+public class King extends Piece {
     
-    protected static final double BASE_SCORE = 1000;
+    protected static final double BASE_SCORE = 500;
     private static final int[] X_MOVES = {1, 1, 1, 0, 0, -1, -1, -1};
     private static final int[] Y_MOVES = {1, 0, -1, 1, -1, 1, 0, -1};
     
     private boolean hasKing = false;
     private Coordinate coordinate = null;
 
-    public KingScore(int sideCoefficient, Position p) {
+    public King(int sideCoefficient, Position p) {
         super(sideCoefficient, p);
     }
 

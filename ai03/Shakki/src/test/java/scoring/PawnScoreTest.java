@@ -3,15 +3,15 @@ package scoring;
 
 import junit.framework.TestCase;
 import position.Position;
-import static scoring.PawnScore.BASE_SCORE;
-import static scoring.PawnScore.NEIGHBOUR_PENALTY;
-import static scoring.PieceScore.PAWN_VALUE;
-import static scoring.PieceScore.THREAT_MULTIPLIER;
+import static scoring.Pawn.BASE_SCORE;
+import static scoring.Pawn.NEIGHBOUR_PENALTY;
+import static scoring.Piece.PAWN_VALUE;
+import static scoring.Piece.THREAT_MULTIPLIER;
 
 public class PawnScoreTest extends TestCase {
     
-    private PawnScore psw;
-    private PawnScore psb;
+    private Pawn psw;
+    private Pawn psb;
     private Position p;
     
     public PawnScoreTest(String testName) {
@@ -22,8 +22,8 @@ public class PawnScoreTest extends TestCase {
     protected void setUp() throws Exception {
         super.setUp();
         p = new Position();
-        psw = new PawnScore(1, p);
-        psb = new PawnScore(-1, p);
+        psw = new Pawn(1, p);
+        psb = new Pawn(-1, p);
     }
 
     public void testWithNoPawn() {
@@ -82,7 +82,7 @@ public class PawnScoreTest extends TestCase {
     public void testItsMoreProfitableToEatQueenThanThreatIt() {
         psw.addPiece(2, 2);
         p.board[3][3] = Position.BQueen;
-        double scoreWhenThreatning = psw.getScore() - QueenScore.BASE_SCORE;
+        double scoreWhenThreatning = psw.getScore() - Queen.BASE_SCORE;
         p.board[3][3] = Position.Empty;
         double scoreAfterQueenBeenEaten = psw.getScore();
         assertTrue(scoreWhenThreatning < scoreAfterQueenBeenEaten);

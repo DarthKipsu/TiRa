@@ -3,15 +3,15 @@ package scoring;
 
 import junit.framework.TestCase;
 import position.Position;
-import static scoring.PieceScore.PAWN_VALUE;
-import static scoring.PieceScore.THREAT_MULTIPLIER;
-import static scoring.RookScore.BASE_SCORE;
-import static scoring.RookScore.SYNERGETIC_BONUS;
+import static scoring.Piece.PAWN_VALUE;
+import static scoring.Piece.THREAT_MULTIPLIER;
+import static scoring.Rook.BASE_SCORE;
+import static scoring.Rook.SYNERGETIC_BONUS;
 
 public class RookScoreTest extends TestCase {
     
-    private RookScore rsw;
-    private RookScore rsb;
+    private Rook rsw;
+    private Rook rsb;
     private Position p;
     
     public RookScoreTest(String testName) {
@@ -22,8 +22,8 @@ public class RookScoreTest extends TestCase {
     protected void setUp() throws Exception {
         super.setUp();
         p = new Position();
-        rsw = new RookScore(1, p);
-        rsb = new RookScore(-1, p);
+        rsw = new Rook(1, p);
+        rsb = new Rook(-1, p);
     }
 
     public void testNoRooksOnBoard() {

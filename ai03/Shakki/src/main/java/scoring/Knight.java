@@ -3,17 +3,17 @@ package scoring;
 
 import position.Position;
 
-public class KnightScore extends PieceScore {
+public class Knight extends Piece {
     
     protected static final double BASE_SCORE = 6;
-    protected static final double SYNERGETIC_BONUS = 5;
+    protected static final double SYNERGETIC_BONUS = 3.5;
     private static final int[] X_MOVES = {-2, -2, -1, -1, 1, 1, 2, 2};
     private static final int[] Y_MOVES = {1, -1, 2, -2, 2, -2, 1, -1};
     
     private boolean[] hasKnight = new boolean[3];
     private Coordinate[] coordinates = new Coordinate[3];
 
-    public KnightScore(int sideCoefficient, Position p) {
+    public Knight(int sideCoefficient, Position p) {
         super(sideCoefficient, p);
     }
 

@@ -3,10 +3,10 @@ package scoring;
 
 import position.Position;
 
-public class RookScore extends PieceScore {
+public class Rook extends Piece {
     
     protected static final double BASE_SCORE = 10;
-    protected static final double SYNERGETIC_BONUS = 8;
+    protected static final double SYNERGETIC_BONUS = 6;
     private static final int[][] X_MOVES = {
         {0, 0, 0, 0, 0, 0, 0},
         {0, 0, 0, 0, 0, 0, 0},
@@ -21,7 +21,7 @@ public class RookScore extends PieceScore {
     private boolean[] hasRook = new boolean[3];
     private Coordinate[] coordinates = new Coordinate[3];
 
-    public RookScore(int sideCoefficient, Position p) {
+    public Rook(int sideCoefficient, Position p) {
         super(sideCoefficient, p);
     }
 

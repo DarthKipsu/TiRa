@@ -3,7 +3,7 @@ package scoring;
 
 import position.Position;
 
-public class PawnScore extends PieceScore {
+public class Pawn extends Piece {
     
     protected static final double BASE_SCORE = 2;
     protected static final double NEIGHBOUR_PENALTY = 0.5;
@@ -14,7 +14,7 @@ public class PawnScore extends PieceScore {
     private Coordinate[] coordinates = new Coordinate[7];
     private double advancementScore = 0;
 
-    public PawnScore(int sideCoefficient, Position p) {
+    public Pawn(int sideCoefficient, Position p) {
         super(sideCoefficient, p);
     }
 

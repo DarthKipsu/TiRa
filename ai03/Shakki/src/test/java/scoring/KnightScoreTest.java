@@ -3,15 +3,15 @@ package scoring;
 
 import junit.framework.TestCase;
 import position.Position;
-import static scoring.KnightScore.BASE_SCORE;
-import static scoring.KnightScore.SYNERGETIC_BONUS;
-import static scoring.PieceScore.PAWN_VALUE;
-import static scoring.PieceScore.THREAT_MULTIPLIER;
+import static scoring.Knight.BASE_SCORE;
+import static scoring.Knight.SYNERGETIC_BONUS;
+import static scoring.Piece.PAWN_VALUE;
+import static scoring.Piece.THREAT_MULTIPLIER;
 
 public class KnightScoreTest extends TestCase {
     
-    private KnightScore ksw;
-    private KnightScore ksb;
+    private Knight ksw;
+    private Knight ksb;
     private Position p;
     
     public KnightScoreTest(String testName) {
@@ -22,8 +22,8 @@ public class KnightScoreTest extends TestCase {
     protected void setUp() throws Exception {
         super.setUp();
         p = new Position();
-        ksw = new KnightScore(1, p);
-        ksb = new KnightScore(-1, p);
+        ksw = new Knight(1, p);
+        ksb = new Knight(-1, p);
     }
 
     public void testWithNoKnight() {

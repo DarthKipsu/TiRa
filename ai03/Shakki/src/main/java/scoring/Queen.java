@@ -3,7 +3,7 @@ package scoring;
 
 import position.Position;
 
-public class QueenScore extends PieceScore {
+public class Queen extends Piece {
     
     protected static final double BASE_SCORE = 18;
     private static final int[][] X_MOVES = {
@@ -28,7 +28,7 @@ public class QueenScore extends PieceScore {
     private int queenCount = 0;
     private Coordinate[] coordinates = new Coordinate[7];
 
-    public QueenScore(int sideCoefficient, Position p) {
+    public Queen(int sideCoefficient, Position p) {
         super(sideCoefficient, p);
     }
 

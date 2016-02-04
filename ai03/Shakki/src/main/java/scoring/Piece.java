@@ -3,7 +3,7 @@ package scoring;
 
 import position.Position;
 
-public abstract class PieceScore {
+public abstract class Piece {
 
     protected static final double PAWN_VALUE = 1;
     protected static final double REST_VALUE = 3;
@@ -11,7 +11,7 @@ public abstract class PieceScore {
     int sideCoefficient;
     Position p;
 
-    public PieceScore(int sideCoefficient, Position p) {
+    public Piece(int sideCoefficient, Position p) {
         this.sideCoefficient = sideCoefficient;
         this.p = p;
     }
