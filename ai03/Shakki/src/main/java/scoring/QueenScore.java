@@ -41,6 +41,10 @@ public class QueenScore extends PieceScore {
         return queenCount > 0;
     }
 
+    public int queenCount() {
+        return queenCount;
+    }
+
     public double getScore() {
         double score = 0;
         score += queenCount * BASE_SCORE;

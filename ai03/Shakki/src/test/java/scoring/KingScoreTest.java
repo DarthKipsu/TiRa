@@ -35,7 +35,7 @@ public class KingScoreTest extends TestCase {
 
     public void testScoreWithOneKing() {
         ksw.addPiece(2, 2);
-        assertEquals(2 * BASE_SCORE, ksw.getScore());
+        assertEquals(BASE_SCORE, ksw.getScore());
     }
 
     public void testScoreWithOneBlackKing() {
@@ -50,19 +50,19 @@ public class KingScoreTest extends TestCase {
     public void testProtectionScoreWithOneProtectedPiece1() {
         p.board[2][3] = Position.WPawn;
         ksw.addPiece(2, 2);
-        assertEquals(2 * BASE_SCORE + PAWN_VALUE, ksw.getScore());
+        assertEquals(BASE_SCORE + PAWN_VALUE, ksw.getScore());
     }
 
     public void testProtectionScoreWithOneProtectedPiece2() {
         p.board[3][3] = Position.WPawn;
         ksw.addPiece(2, 2);
-        assertEquals(2 * BASE_SCORE + PAWN_VALUE, ksw.getScore());
+        assertEquals(BASE_SCORE + PAWN_VALUE, ksw.getScore());
     }
 
     public void testProtectionScoreWithOneProtectedPiece3() {
         p.board[1][2] = Position.WPawn;
         ksw.addPiece(2, 2);
-        assertEquals(2 * BASE_SCORE + PAWN_VALUE, ksw.getScore());
+        assertEquals(BASE_SCORE + PAWN_VALUE, ksw.getScore());
     }
 
     public void testProtectionScoreWithBlackProtectedPiece() {
@@ -74,30 +74,30 @@ public class KingScoreTest extends TestCase {
     public void testProtectionScoreWithProtectedPieceOutOfReach() {
         p.board[0][2] = Position.WPawn;
         ksw.addPiece(2, 2);
-        assertEquals(2 * BASE_SCORE, ksw.getScore());
+        assertEquals(BASE_SCORE, ksw.getScore());
     }
 
     public void testProtectionScoreWithTwoProtectedPieces() {
         p.board[3][1] = Position.WPawn;
         p.board[1][3] = Position.WPawn;
         ksw.addPiece(2, 2);
-        assertEquals(2 * BASE_SCORE + PAWN_VALUE + PAWN_VALUE, ksw.getScore());
+        assertEquals(BASE_SCORE + PAWN_VALUE + PAWN_VALUE, ksw.getScore());
     }
 
     public void testScoreWhenKingOnTheEdge() {
         ksw.addPiece(0, 5);
-        assertEquals(2 * BASE_SCORE, ksw.getScore());
+        assertEquals(BASE_SCORE, ksw.getScore());
     }
 
     public void testwithEnemyPawn() {
         p.board[1][2] = Position.BPawn;
         ksw.addPiece(2, 2);
-        assertEquals(2 * BASE_SCORE + THREAT_MULTIPLIER, ksw.getScore());
+        assertEquals(BASE_SCORE + THREAT_MULTIPLIER, ksw.getScore());
     }
 
     public void testThreatScoreWithEnemyUnitNotBeingThreat() {
         p.board[2][3] = Position.BPawn;
         ksw.addPiece(2, 2);
-        assertEquals(2 * BASE_SCORE + THREAT_MULTIPLIER, ksw.getScore());
+        assertEquals(BASE_SCORE + THREAT_MULTIPLIER, ksw.getScore());
     }
 }

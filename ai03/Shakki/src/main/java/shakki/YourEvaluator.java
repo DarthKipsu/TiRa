@@ -60,6 +60,7 @@ public class YourEvaluator extends Evaluator{
             KnightScore ks = (KnightScore)k;
             if (rs.hasRook()) score += 2 * QUEEN_SYNERGY_BONUS;
             if (ks.hasKnight()) score += QUEEN_SYNERGY_BONUS;
+            score += (qs.queenCount() - 1) * 3 * QUEEN_SYNERGY_BONUS;
         }
         return score;
     }

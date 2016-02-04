@@ -76,6 +76,7 @@ public class Main {
     public static void main(String[] args) {
         // you get the white pieces, we play the black pieces
         oe = new OurEvaluator();
+//        oe = new YourEvaluator();
         ye = new YourEvaluator();
         int depth = 5;
         Position p = new Position();
