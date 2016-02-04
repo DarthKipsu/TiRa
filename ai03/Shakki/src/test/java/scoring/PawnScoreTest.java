@@ -48,10 +48,22 @@ public class PawnScoreTest extends TestCase {
         assertEquals(BASE_SCORE + MOBILITY_BONUS, psw.getScore());
         p.board[2][3] = Position.WPawn;
         psw.addPiece(2, 3);
-        assertEquals(3 * BASE_SCORE + MOBILITY_BONUS, psw.getScore());
+        assertEquals(2 * BASE_SCORE + 3 + MOBILITY_BONUS, psw.getScore());
         p.board[2][4] = Position.WPawn;
         psw.addPiece(2, 4);
-        assertEquals(6 * BASE_SCORE + MOBILITY_BONUS, psw.getScore());
+        assertEquals(3 * BASE_SCORE + 9 + MOBILITY_BONUS, psw.getScore());
+    }
+
+    public void testBlackPawnAdvancement() {
+        p.board[2][3] = Position.BPawn;
+        psb.addPiece(2, 3);
+        assertEquals(-BASE_SCORE - MOBILITY_BONUS, psb.getScore());
+        p.board[2][2] = Position.BPawn;
+        psb.addPiece(2, 2);
+        assertEquals(2 * -BASE_SCORE - 3 - MOBILITY_BONUS, psb.getScore());
+        p.board[2][1] = Position.BPawn;
+        psb.addPiece(2, 1);
+        assertEquals(3 * -BASE_SCORE - 9 - MOBILITY_BONUS, psb.getScore());
     }
 
     public void testWhitePawnWithProtectedPawn() {
