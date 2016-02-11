@@ -8,6 +8,7 @@ public class Knight extends Piece {
     
     private boolean[] hasKnight = new boolean[3];
     private Coordinate[] coordinates = new Coordinate[3];
+    private double middleScore = 0;
 
     public Knight(int sideCoefficient, Position p) {
         super(sideCoefficient, p);
@@ -32,10 +33,15 @@ public class Knight extends Piece {
             score += BASE_SCORE + SYNERGETIC_BONUS;
             score += protectionAndThreatBonuses(coordinates[2]);
         }
+        score += middleScore;
         return this.sideCoefficient * score;
     }
 
     private void addKnight(int id, int x, int y) {
+        if (x > 0 && x < 5 && y > 0 && y < 5) {
+            middleScore++;
+            if (x > 1 && x < 4 && y > 1 && y < 4) middleScore += 2;
+        }
         hasKnight[id] = true;
         coordinates[id] = new Coordinate(x, y);
     }

@@ -150,7 +150,9 @@ public class Main {
 			p.print();
 			
 			long curtime = System.currentTimeMillis();
+            System.out.println("Evaluation: " + ye.eval(p));
 			System.out.println("Move took "+((curtime-ms)/1000.0)+" seconds");
+            System.out.println("");
 			ms = curtime;
 		}
 		

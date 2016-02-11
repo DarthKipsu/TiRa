@@ -47,7 +47,7 @@ public abstract class Piece {
         int piece = p.board[x][y];
         if (piece == Position.Empty) return 0;
         if (isFriendlyPiece(piece)) {
-            if (isPawn(piece)) return PAWN_VALUE;
+            if (isPawn(piece) && x < 3) return PAWN_VALUE;
             if (isKing(piece)) return 0;
             return REST_VALUE;
         }

@@ -1,6 +1,6 @@
 public class YourEvaluator extends Evaluator {
 
-    private static final double QUEEN_SYNERGY_BONUS = 5;
+    private static final double QUEEN_SYNERGY_BONUS = 7;
     private Piece[] pieces;
 
     @Override

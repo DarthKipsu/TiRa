@@ -2,7 +2,7 @@
 public class Pawn extends Piece {
     
     protected static final double BASE_SCORE = 2;
-    protected static final double NEIGHBOUR_PENALTY = 0.5;
+    protected static final double NEIGHBOUR_PENALTY = 0.75;
     private static final int[] X_MOVES = {1, -1};
     private static final int[] Y_MOVES = {1, 1};
     
