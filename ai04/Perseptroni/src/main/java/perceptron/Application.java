@@ -25,8 +25,8 @@ public class Application {
             steps = Integer.parseInt(args[0]);
         }
 
-        int targetChar = 3; // tämä on plus-luokka
-        int oppositeChar = 5; // tämä on miinus-luokka
+        int targetChar = 7; // tämä on plus-luokka
+        int oppositeChar = 1; // tämä on miinus-luokka
 
         System.out.println("Learning to classify " + targetChar + " vs " + oppositeChar);
         List<Image> images = readImages();

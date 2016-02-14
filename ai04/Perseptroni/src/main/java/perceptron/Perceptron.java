@@ -28,15 +28,30 @@ public class Perceptron {
 
         for (int step = 0; step < steps;) {
             int example = rand.nextInt(5000); // pick random example
+            Image xe = images.get(example);
 
             // only care about the two classes
-            if (images.get(example).characterClass != targetChar
-                    && images.get(example).characterClass != oppositeChar) {
+            if (xe.characterClass != targetChar
+                    && xe.characterClass != oppositeChar) {
                 continue;
             }
             step++;
-
-            //...
+            
+            double[] x = xe.vec;
+            double z = 0;
+            for (int i=0; i<w.length; i++) {
+                z += w[i] * x[i];
+            }
+            if (z >= 0 && xe.characterClass == oppositeChar) {
+                for (int i=0; i<w.length; i++) {
+                    w[i] -= x[i];
+                }
+            }
+            if (z < 0 && xe.characterClass == targetChar) {
+                for (int i=0; i<w.length; i++) {
+                    w[i] += x[i];
+                }
+            }
         }
         return w;
     }
