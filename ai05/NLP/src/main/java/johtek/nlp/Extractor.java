@@ -1,5 +1,7 @@
 package johtek.nlp;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import opennlp.tools.parser.Parse;
 
 public class Extractor {
@@ -17,13 +19,36 @@ public class Extractor {
         // Subjekti on ensimmäisessä löydetyssä solmussa, jonka POS-tag on substantiivi
         // Substantiiveja ovat solmut, joiden POS-tag on NN, NNP, NNS tai NNPS
         // Jos substantiivia ei löydy, palauta null
-        
+
+        for (Parse child : root.getChildren()) {
+            if (child.getType().equals("NP")) {
+                Deque<Parse> d = new ArrayDeque<>();
+                d.add(child);
+                return findSubjectWithBreadthFirstSearch(d);
+            }
+        }
+
         // tarvittavat Parse-olion metodit:
         // solmu.getChildren() palauttaa Parse[] taulukon lapsista
         // solmu.getType() palauttaa String-oliona solmun POS-tagin, esim. NP tai VP
         // solmu.getCoveredText() palauttaa kyseiseen solmuun liittyvän osan alkuperäisestä tekstistä
         
-        return "";
+        return null;
+    }
+
+    private static String findSubjectWithBreadthFirstSearch(Deque<Parse> d) {
+        if (d.isEmpty()) return null;
+        Parse node = d.pollFirst();
+        if (node.getType().equals("NN") ||
+                node.getType().equals("NNP") ||
+                node.getType().equals("NNS") ||
+                node.getType().equals("NNPS")) {
+            return node.getCoveredText();
+        }
+        for (Parse child : node.getChildren()){
+            d.add(child);
+        }
+        return findSubjectWithBreadthFirstSearch(d);
     }
     
 }
