@@ -5,7 +5,9 @@ import opennlp.tools.parser.Parse;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Main {
         
@@ -16,13 +18,16 @@ public class Main {
         File file = new File(Main.class.getResource("/metamorphosis.txt").getFile());
         // File file = new File(Main.class.getResource("/wikipedia.txt").getFile());
         List<String> lines = FileUtils.readLines(file);
+        Map verbs = new HashMap<String, Integer>();
 
         for (String line : lines) {
             for (String sentence : NLP.detectSentences(line)) {
                 if (sentence.contains("Gregor")) {
-                    String subject = Extractor.extractSubject(NLP.parse(sentence));
+                    Parse root = NLP.parse(sentence);
+                    String subject = Extractor.extractSubject(root);
                     if (subject != null && subject.equals("Gregor")) {
                         System.out.println(sentence);
+                        System.out.println(Extractor.extractVerbs(root, verbs));
                     }
                 }
             }

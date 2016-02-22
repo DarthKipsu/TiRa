@@ -2,6 +2,8 @@ package johtek.nlp;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.HashMap;
+import java.util.Map;
 import opennlp.tools.parser.Parse;
 
 public class Extractor {
@@ -51,6 +53,33 @@ public class Extractor {
             d.add(child);
         }
         return findSubjectWithBreadthFirstSearch(d);
+    }
+
+    public static Map extractVerbs(Parse root, Map<String, Integer> verbs) {
+        if (root == null) return null;
+
+        Deque<Parse> d = new ArrayDeque<>();
+        d.add(root);
+        return findVerbsWithBreadthFirstSearch(d, verbs);
+    }
+
+    private static Map findVerbsWithBreadthFirstSearch(Deque<Parse> d, Map<String, Integer> verbs) {
+        if (d.isEmpty()) return verbs;
+        Parse node = d.pollFirst();
+        if (node.getType().equals("VB") ||
+                node.getType().equals("VBD") ||
+                node.getType().equals("VBG") ||
+                node.getType().equals("VBN") ||
+                node.getType().equals("VBP") ||
+                node.getType().equals("VBZ")) {
+            String v = node.getCoveredText();
+            if (!verbs.containsKey(v)) verbs.put(v, 0);
+            verbs.replace(v, verbs.get(v) + 1);
+        }
+        for (Parse child : node.getChildren()){
+            d.add(child);
+        }
+        return findVerbsWithBreadthFirstSearch(d, verbs);
     }
     
 }
