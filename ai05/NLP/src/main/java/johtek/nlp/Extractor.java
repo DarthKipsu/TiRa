@@ -20,6 +20,8 @@ public class Extractor {
         // Substantiiveja ovat solmut, joiden POS-tag on NN, NNP, NNS tai NNPS
         // Jos substantiivia ei löydy, palauta null
 
+        if (root == null) return null;
+
         for (Parse child : root.getChildren()) {
             if (child.getType().equals("NP")) {
                 Deque<Parse> d = new ArrayDeque<>();

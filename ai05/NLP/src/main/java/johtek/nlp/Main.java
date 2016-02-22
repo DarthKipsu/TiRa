@@ -19,7 +19,12 @@ public class Main {
 
         for (String line : lines) {
             for (String sentence : NLP.detectSentences(line)) {
-                // logiikka tähän
+                if (sentence.contains("Gregor")) {
+                    String subject = Extractor.extractSubject(NLP.parse(sentence));
+                    if (subject != null && subject.equals("Gregor")) {
+                        System.out.println(sentence);
+                    }
+                }
             }
         }
     }

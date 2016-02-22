@@ -26,12 +26,15 @@ public class NLPUtils {
      */
     public Parse parse(String sentence) {
         // the parser prints to stderr when it can't parse the sentence, UGH
-        PrintStream err = System.err;
-        System.setErr(new Interceptor(err));
-        Parse topParses[] = ParserTool.parseLine(sentence, parser, 1);
-        System.setErr(err);
-        
-        return getRoot(topParses[0]);
+        try {
+            PrintStream err = System.err;
+            System.setErr(new Interceptor(err));
+            Parse topParses[] = ParserTool.parseLine(sentence, parser, 1);
+            System.setErr(err);
+            return getRoot(topParses[0]);
+        } catch (Error e) {
+            return null;
+        }
     }
     
     /**
