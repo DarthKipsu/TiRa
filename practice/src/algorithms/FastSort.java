@@ -2,6 +2,7 @@
 package algorithms;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 
 public class FastSort {
   
@@ -20,6 +21,41 @@ public class FastSort {
       }
     }
     return merge(mergeSort(left), mergeSort(right));
+  }
+  
+  public static int[] naturalMergeSort(int[] input) {
+    LinkedList<Integer> list = new LinkedList<Integer>();
+    for (int i = 0; i < input.length; i++) {
+      list.addLast(input[i]);
+    }
+    list = naturalMergeSort(list);
+    int[] result = new int[list.size()];
+    for (int i = 0; i < result.length; i++) {
+      result[i] = list.pollFirst();
+    }
+    return result;
+  }
+  
+  private static LinkedList<Integer> naturalMergeSort(
+        LinkedList<Integer> input) {
+    int n = input.size();
+    if (n <= 1) return input;
+    LinkedList<LinkedList<Integer>> runs = 
+        new LinkedList<LinkedList<Integer>>();
+    LinkedList<Integer> lastRun = new LinkedList<Integer>();
+    runs.addLast(lastRun);
+    runs.getFirst().addLast(input.getFirst());
+    for (int i = 1; i < n; i++) {
+      if (input.get(i) < lastRun.getLast()) {
+        lastRun = new LinkedList<Integer>();
+        runs.addLast(lastRun);
+      }
+      lastRun.addLast(input.get(i));
+    }
+    for (int i = 0; i < runs.size() - 1; i++) {
+      lastRun = merge(lastRun, runs.get(i));
+    }
+    return lastRun;
   }
   
   private static int[] merge(int[] left, int[] right) {
@@ -48,9 +84,30 @@ public class FastSort {
     return merged;
   }
   
+  private static LinkedList<Integer> merge(LinkedList<Integer> left,
+        LinkedList<Integer> right) {
+    LinkedList<Integer> merged = new LinkedList<Integer>();
+    while (!left.isEmpty() && !right.isEmpty()) {
+      if (left.getFirst() < right.getFirst()) {
+        merged.addLast(left.pollFirst());
+      } else {
+        merged.addLast(right.pollFirst());
+      }
+    }
+    while (!left.isEmpty()) {
+      merged.addLast(left.pollFirst());
+    }
+    while (!right.isEmpty()) {
+      merged.addLast(right.pollFirst());
+    }
+    return merged;
+  }
+  
   public static void main(String[] args) {
     int[] input = {3, 1, -5, 4, -2, 8, 5, -3, 5, 7 , -2, 7, 4, 0, 0, 3, 5, -1};
     
     System.out.println("merge sort: " + Arrays.toString(mergeSort(input)));
+    System.out.println("natural merge sort: " + 
+        Arrays.toString(naturalMergeSort(input)));
   }
 }
