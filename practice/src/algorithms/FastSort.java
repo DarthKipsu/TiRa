@@ -36,6 +36,32 @@ public class FastSort {
     return result;
   }
   
+  public static int[] quickSort(int[] input) {
+    if (input.length < 2) return input;
+    int n = input.length - 1;
+    int pivot = input[n];
+    int i = 0;
+    for (int j = 0; j < n; j++) {
+      if (pivot > input[j]) {
+        int temp = input[i];
+        input[i] = input[j];
+        input[j] = temp;
+        i++;
+      }
+    }
+    input[n] = input[i];
+    input[i] = pivot;
+    int[] beginning = quickSort(Arrays.copyOfRange(input, 0, i));
+    int[] end = quickSort(Arrays.copyOfRange(input, i + 1, n + 1));
+    for (int j = 0; j < i; j++) {
+      input[j] = beginning [j];
+    }
+    for (int j = i + 1; j <= n; j++) {
+      input[j] = end[j - i - 1];
+    }
+    return input;
+  }
+  
   private static LinkedList<Integer> naturalMergeSort(
         LinkedList<Integer> input) {
     int n = input.size();
@@ -109,5 +135,6 @@ public class FastSort {
     System.out.println("merge sort: " + Arrays.toString(mergeSort(input)));
     System.out.println("natural merge sort: " + 
         Arrays.toString(naturalMergeSort(input)));
+    System.out.println("quick sort: " + Arrays.toString(quickSort(input)));
   }
 }
