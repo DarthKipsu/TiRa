@@ -5,7 +5,7 @@ public class SegmentTree {
   
   /**
    * Implement a segment tree for keeping track of sums between elements in an 
-   * array.
+   * array  and easily change values in the array.
    * 
    * Assumption: array length is a power of two.
    * 
